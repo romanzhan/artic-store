@@ -1,0 +1,32 @@
+@use '../abstracts' as *;
+
+.tile {
+  --tile-ratio: 1 / 1;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: var(--tile-ratio);
+}
+
+.tile__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+
+  .tile:hover & {
+    transform: scale(1.04);
+  }
+}
+
+.tile__label {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  padding: var(--space-8) var(--space-12);
+  font-family: var(--font-secondary);
+  font-size: var(--fs-18);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  color: var(--color-text);
+}

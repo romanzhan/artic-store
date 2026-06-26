@@ -1,0 +1,31 @@
+@use '../abstracts' as *;
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-regular);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.container {
+  width: min(100% - (var(--container-gutter) * 2), var(--container-width));
+  margin-inline: auto;
+}
+
+.main {
+  padding-block-end: var(--space-40);
+  background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-muted));
+
+  @include respond-to('tablet') {
+    padding-block-end: 0;
+  }
+
+  @include respond-to('mobile') {
+    background: var(--color-bg);
+  }
+}

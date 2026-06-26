@@ -1,0 +1,21 @@
+@use '../abstracts' as *;
+
+.blog-slider__viewport {
+  position: relative;
+}
+
+.blog-slider__viewport .blog-slider__swiper .swiper-slide {
+  display: flex;
+  height: auto;
+
+  > * {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@include respond-to('tablet') {
+  .blog-slider__viewport .blog-slider__swiper {
+    margin-inline: calc(-1 * var(--container-gutter));
+  }
+}

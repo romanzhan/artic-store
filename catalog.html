@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Каталог — Artic Store</title>
+    <style>
+      .overlay,
+      .search,
+      .mega-menu,
+      .mobile-menu {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {{> layout/sprite }}
+
+    {{> layout/header }}
+
+    <main class="main">
+      <div class="surface catalog" data-catalog>
+        <nav class="breadcrumbs" aria-label="Хлебные крошки" data-breadcrumbs></nav>
+        <div class="catalog__head" data-catalog-head>
+          <span class="catalog__back-wrap" data-catalog-back></span>
+          <h1 class="catalog__title" data-catalog-title>Каталог</h1>
+        </div>
+        <div class="catalog__body">
+          <aside class="catalog__aside" aria-label="Категории" data-catalog-nav></aside>
+          <div class="catalog__content">
+            <div class="filter-bar" data-catalog-filters></div>
+            <div class="catalog__grid" data-product-grid></div>
+            <nav class="pagination" aria-label="Страницы каталога" data-pagination></nav>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> layout/footer }}
+
+    {{> layout/mobile-menu }}
+
+    <div class="overlay" data-overlay></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

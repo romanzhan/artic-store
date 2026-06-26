@@ -1,0 +1,63 @@
+@use '../abstracts' as *;
+
+.burger {
+  --burger-w: 23px;
+  --burger-h: 19px;
+  --burger-line: 1px;
+
+  position: relative;
+  width: var(--burger-w);
+  height: var(--burger-h);
+  color: var(--color-gray);
+  transition: color var(--transition-base);
+
+  &__line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--burger-line);
+    background-color: currentColor;
+    transition:
+      top var(--transition-base),
+      bottom var(--transition-base),
+      width var(--transition-base),
+      opacity var(--transition-base),
+      transform var(--transition-base);
+
+    &--top {
+      top: 0;
+    }
+
+    &--mid {
+      top: 50%;
+      left: 50%;
+      width: 65%;
+      transform: translate(-50%, -50%);
+    }
+
+    &--bottom {
+      bottom: 0;
+    }
+  }
+
+  &.is-open {
+    .burger__line--top {
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .burger__line--mid {
+      width: 100%;
+      opacity: 0;
+    }
+
+    .burger__line--bottom {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
+    }
+  }
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}

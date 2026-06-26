@@ -1,0 +1,11 @@
+node_modules
+dist
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+
+# исходники изображений и временные скрипты
+raw/
+_*.mjs
+_*.png

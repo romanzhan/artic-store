@@ -1,0 +1,52 @@
+@use '../abstracts' as *;
+
+.products-slider__title {
+  width: fit-content;
+  margin-block-end: var(--space-24);
+  font-size: var(--fs-22);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  color: var(--color-text);
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: var(--accent-line-height);
+    margin-block-start: var(--space-4);
+    background-color: var(--color-accent);
+  }
+
+  @include respond-to('mobile') {
+    font-size: var(--fs-16);
+  }
+}
+
+.products-slider__viewport {
+  position: relative;
+  display: flow-root;
+}
+
+.products-slider__viewport .products-slider__swiper {
+  --bleed-x: var(--space-16);
+  --bleed-y: var(--space-40);
+  padding: var(--bleed-y) var(--bleed-x);
+  margin: calc(-1 * var(--bleed-y)) calc(-1 * var(--bleed-x));
+
+  .swiper-slide {
+    display: flex;
+    height: auto;
+
+    > * {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}
+
+@include respond-to('tablet') {
+  .products-slider__viewport .products-slider__swiper {
+    padding-inline: 0;
+    margin-inline: calc(-1 * var(--container-gutter));
+  }
+}

@@ -1,0 +1,96 @@
+@use '../abstracts' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  font-family: var(--font-secondary);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-text);
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.btn--primary {
+  padding: var(--space-12) var(--space-20);
+  font-size: var(--fs-16);
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+
+  &:hover {
+    color: var(--color-text-on-accent);
+    background-color: var(--color-accent);
+  }
+
+  &:active {
+    background-color: var(--color-accent-active);
+    border-color: var(--color-accent-active);
+  }
+}
+
+.btn--filled-mobile {
+  @include respond-to('mobile') {
+    color: var(--color-text-on-accent);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+
+    &:hover {
+      background-color: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+    }
+
+    &:active {
+      background-color: var(--color-accent-active);
+      border-color: var(--color-accent-active);
+    }
+  }
+}
+
+.btn--filled {
+  padding: var(--space-8) var(--space-16);
+  font-size: var(--fs-14);
+  color: var(--color-text-on-accent);
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+
+  &:hover {
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+  }
+
+  &:active {
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+  }
+}
+
+.btn--icon-lg .btn__icon {
+  width: var(--btn-icon-w-lg);
+  height: var(--btn-icon-h-lg);
+}
+
+.btn--compact-mobile {
+  @include respond-to('mobile') {
+    padding: var(--space-8) var(--space-16);
+    font-size: var(--fs-14);
+
+    .btn__icon {
+      width: var(--btn-icon-w-sm);
+      height: var(--btn-icon-h-sm);
+    }
+  }
+}
+
+.btn__icon {
+  width: var(--btn-icon-w);
+  height: var(--btn-icon-h);
+}

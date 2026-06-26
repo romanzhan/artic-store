@@ -1,0 +1,21 @@
+@use '../abstracts' as *;
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--icon-size, 28px);
+  height: var(--icon-size, 28px);
+  color: inherit;
+
+  &--sm {
+    --icon-size: 20px;
+  }
+
+  &--lg {
+    --icon-size: 32px;
+  }
+
+  &--flip {
+    transform: scaleX(-1);
+  }
+}
