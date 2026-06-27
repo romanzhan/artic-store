@@ -3,6 +3,7 @@
 .header {
   position: relative;
   z-index: var(--z-header);
+  padding-block-start: env(safe-area-inset-top);
   background-color: var(--color-bg);
 
   &__inner {
@@ -74,12 +75,13 @@
   }
 
   &__counter {
+    --counter-size: 18px;
     position: absolute;
-    top: 16px;
-    inset-inline-end: 16px;
-    min-width: 18px;
-    height: 18px;
-    padding-inline: 4px;
+    inset-block-start: var(--space-16);
+    inset-inline-end: var(--space-16);
+    min-width: var(--counter-size);
+    height: var(--counter-size);
+    padding-inline: var(--space-4);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -114,13 +116,10 @@
     }
 
     &__logo {
+      --logo-width: 140px;
       grid-row: 1;
       grid-column: 3;
       justify-self: center;
-
-      img {
-        width: 140px;
-      }
     }
 
     &__nav {

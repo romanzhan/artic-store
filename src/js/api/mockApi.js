@@ -115,8 +115,14 @@ const TREE = {
 };
 
 const PRODUCT_IMAGES = {
-  women: { clothes: ['jacket-women-1', 'jacket-women-2', 'jacket-women-sport'], shoes: ['sneakers-1', 'sneakers-2', 'sneakers-3'] },
-  men: { clothes: ['jacket-men-winter', 'jacket-women-sport'], shoes: ['sneakers-men', 'sneakers-3'] },
+  women: {
+    clothes: ['jacket-women-1', 'jacket-women-2', 'jacket-women-sport', 'jacket-men-winter'],
+    shoes: ['sneakers-1', 'sneakers-2', 'sneakers-3', 'sneakers-men'],
+  },
+  men: {
+    clothes: ['jacket-men-winter', 'jacket-women-sport', 'jacket-women-1', 'jacket-women-2'],
+    shoes: ['sneakers-men', 'sneakers-3', 'sneakers-1', 'sneakers-2'],
+  },
 };
 
 const BRANDS_POOL = ['Premiata', 'PJS', 'Boss', 'Parajumpers', 'Fabi', 'Moncler', 'Herno', 'Woolrich'];

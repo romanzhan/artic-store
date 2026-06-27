@@ -162,16 +162,15 @@
   &__group-item--active > &__group {
     position: relative;
     color: var(--color-accent);
+  }
 
-    &::before {
-      content: '';
-      position: absolute;
-      inset-inline-start: calc(-1 * var(--space-12));
-      inset-block-start: 50%;
-      transform: translateY(-50%);
-      border-block: 4px solid transparent;
-      border-inline-start: 5px solid var(--color-accent);
-    }
+  &__marker {
+    --icon-size: 18px;
+    position: absolute;
+    inset-inline-start: calc(-1 * var(--space-24));
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    color: var(--color-accent);
   }
 
   &__sub {

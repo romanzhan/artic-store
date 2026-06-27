@@ -2,7 +2,9 @@
 
 .footer {
   position: relative;
+  isolation: isolate;
   padding-block: var(--space-48);
+  padding-block-end: calc(var(--space-48) + env(safe-area-inset-bottom));
 
   &::before {
     content: '';

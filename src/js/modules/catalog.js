@@ -38,9 +38,16 @@ function buildUrl(overrides = {}, { resetPage = true } = {}) {
   return query ? `${window.location.pathname}?${query}` : window.location.pathname;
 }
 
-const go = (url) => {
-  window.location.href = url;
-};
+async function loadCatalog() {
+  data = await mockApi.getCatalog(parseLocation());
+  render();
+  root.querySelectorAll('[data-price]').forEach(syncPrice);
+}
+
+async function go(url) {
+  window.history.pushState({}, '', url);
+  await loadCatalog();
+}
 
 function renderBack(href) {
   return `
@@ -75,9 +82,10 @@ function renderNav(tree) {
   const subItem = (s) =>
     `<li><a class="cat-nav__sublink${s.active ? ' cat-nav__sublink--active' : ''}" href="${s.href}">${s.label}</a></li>`;
 
+  const marker = '<svg class="icon cat-nav__marker" aria-hidden="true"><use href="#icon-arrow-circle"></use></svg>';
   const groupItem = (g) => `
     <li class="cat-nav__group-item${g.active ? ' cat-nav__group-item--active' : ''}">
-      <a class="cat-nav__group" href="${g.href}">${g.label}</a>
+      <a class="cat-nav__group" href="${g.href}">${g.active ? marker : ''}${g.label}</a>
       ${g.active ? `<ul class="cat-nav__sub">${g.subs.map(subItem).join('')}</ul>` : ''}
     </li>`;
 
@@ -341,6 +349,14 @@ function onClick(event) {
     return;
   }
 
+  const pageLink = event.target.closest('a.pagination__item');
+  if (pageLink) {
+    event.preventDefault();
+    go(pageLink.getAttribute('href'));
+    root.querySelector('[data-product-grid]')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
   const toggle = event.target.closest('[data-filter-toggle]');
   if (toggle && root.contains(toggle)) {
     togglePanel(toggle);
@@ -382,13 +398,11 @@ export async function initCatalog() {
   root = document.querySelector('[data-catalog]');
   if (!root) return;
 
-  data = await mockApi.getCatalog(parseLocation());
-  render();
-
-  root.querySelectorAll('[data-price]').forEach(syncPrice);
+  await loadCatalog();
 
   root.addEventListener('click', onClick);
   root.addEventListener('input', onInput);
+  window.addEventListener('popstate', loadCatalog);
   window.addEventListener('scroll', () => closePanels(null), { passive: true });
   window.addEventListener('resize', () => {
     closePanels(null);

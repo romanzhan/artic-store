@@ -156,7 +156,7 @@
   position: absolute;
   inset-block-end: var(--space-20);
   z-index: 4;
-  background-color: color-mix(in srgb, var(--color-white) 75%, transparent);
+  background-color: var(--color-glass);
 
   &--prev {
     inset-inline-start: var(--space-24);

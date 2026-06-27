@@ -11,6 +11,8 @@
   width: min(var(--cart-toast-w), calc(100vw - var(--space-32)));
   padding: var(--space-24);
   background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
   box-shadow: var(--shadow-surface);
   opacity: 0;
   transform: translateX(calc(100% + var(--space-24)));
@@ -41,7 +43,7 @@
     &::after {
       content: '';
       display: block;
-      width: 100%;
+      width: 60%;
       height: var(--accent-line-height);
       margin-block-start: var(--space-8);
       background-color: var(--color-accent);
@@ -69,7 +71,7 @@
   &__media {
     flex-shrink: 0;
     width: var(--cart-toast-media);
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
     background-color: var(--color-bg-muted);
   }
