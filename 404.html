@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Artic Store</title>
+    <script>
+      (function () {
+        var BASE = '/artic-store/';
+        var rest = location.pathname.indexOf(BASE) === 0 ? '/' + location.pathname.slice(BASE.length) : location.pathname;
+        var entries = [
+          [/^\/catalog(\/|$)/, 'catalog.html'],
+          [/^\/product(\/|$)/, 'product.html'],
+          [/^\/gift(\/|$)/, 'gift.html'],
+          [/^\/payment(\/|$)/, 'payment.html'],
+          [/^\/delivery(\/|$)/, 'delivery.html'],
+          [/^\/privacy(\/|$)/, 'privacy.html'],
+          [/^\/contacts(\/|$)/, 'contacts.html'],
+          [/^\/account(\/|$)/, 'account.html'],
+        ];
+        var entry = 'not-found.html';
+        for (var i = 0; i < entries.length; i += 1) {
+          if (entries[i][0].test(rest)) {
+            entry = entries[i][1];
+            break;
+          }
+        }
+        try {
+          sessionStorage.setItem('artic:route', location.pathname + location.search);
+        } catch (e) {}
+        location.replace(BASE + entry);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
