@@ -35,8 +35,7 @@ body {
 }
 
 .container {
-  width: min(100% - (var(--container-gutter) * 2), var(--container-width));
-  margin-inline: auto;
+  @include container-width;
 }
 
 .main {

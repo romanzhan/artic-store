@@ -8,9 +8,8 @@
   grid-template-columns: var(--account-menu-w) minmax(0, 1fr);
   gap: var(--space-40);
   align-items: start;
-  width: min(100% - (var(--container-gutter) * 2), var(--container-width));
+  @include container-width;
   margin-block-start: var(--space-24);
-  margin-inline: auto;
 
   &__board.surface {
     margin: 0;

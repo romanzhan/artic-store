@@ -17,6 +17,11 @@
   }
 }
 
+@mixin container-width {
+  width: min(100% - (var(--container-gutter) * 2), var(--container-width));
+  margin-inline: auto;
+}
+
 @mixin title-accent($width: 60%) {
   &::after {
     content: '';
