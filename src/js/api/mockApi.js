@@ -1,6 +1,9 @@
 const delay = (ms = 200) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const FAVORITES_KEY = 'artic:favorites';
+const CART_KEY = 'artic:cart';
+
+export const STORAGE_KEYS = { cart: CART_KEY, favorites: FAVORITES_KEY };
 
 function readFavorites() {
   try {
@@ -14,8 +17,6 @@ function readFavorites() {
 function writeFavorites(ids) {
   localStorage.setItem(FAVORITES_KEY, JSON.stringify(ids));
 }
-
-const CART_KEY = 'artic:cart';
 
 function readCart() {
   try {

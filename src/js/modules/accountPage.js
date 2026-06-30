@@ -6,6 +6,7 @@ import { renderProductCard } from '../components/productCard.js';
 import { renderCheck } from '../components/check.js';
 import { imageUrl, formatPrice } from '../utils/productAssets.js';
 import { go, routePath, BASE } from '../utils/base.js';
+import { escapeHtml } from '../utils/dom.js';
 
 const ORDER_STATUS = {
   created: { label: 'Создан', mod: 'created' },
@@ -65,7 +66,7 @@ const field = (input) => `<label class="account-form__field">${input}</label>`;
 function renderProfile() {
   const user = authStore.user() ?? {};
   const gender = user.gender === 'male' ? 'male' : 'female';
-  const value = (val) => (val ? ` value="${val}"` : '');
+  const value = (val) => (val ? ` value="${escapeHtml(val)}"` : '');
 
   return `
     <form class="account-form" data-account-profile novalidate>
@@ -127,9 +128,9 @@ function renderOrderCard(order) {
         <h2 class="order-card__num">Заказ № ${order.id}</h2>
         <p class="order-card__date">
           <svg class="icon order-card__icon" aria-hidden="true"><use href="#icon-date"></use></svg>
-          ${order.date}
+          ${escapeHtml(order.date)}
         </p>
-        <p class="order-card__delivery"><b>${order.delivery}</b> ${order.address}</p>
+        <p class="order-card__delivery"><b>${escapeHtml(order.delivery)}</b> ${escapeHtml(order.address)}</p>
         ${statusBadge(status)}
       </div>
       <div class="order-card__sum">
@@ -186,9 +187,9 @@ function renderHome() {
     <div class="account-home">
       <div class="account-summary">
         <div class="account-summary__info">
-          <h1 class="account-summary__name">${name}</h1>
-          ${user.phone ? `<p class="account-summary__contact">${user.phone}</p>` : ''}
-          ${user.email ? `<p class="account-summary__contact">${user.email}</p>` : ''}
+          <h1 class="account-summary__name">${escapeHtml(name)}</h1>
+          ${user.phone ? `<p class="account-summary__contact">${escapeHtml(user.phone)}</p>` : ''}
+          ${user.email ? `<p class="account-summary__contact">${escapeHtml(user.email)}</p>` : ''}
         </div>
         <a class="btn btn--primary btn--filled-tablet account-summary__edit" href="/account/profile">
           <span>Изменить</span>
@@ -254,10 +255,10 @@ function renderOrderDetail(order) {
         </div>
         <p class="order-detail__date">
           <svg class="icon order-detail__icon" aria-hidden="true"><use href="#icon-date"></use></svg>
-          ${order.date}, ${order.time}
+          ${escapeHtml(order.date)}, ${escapeHtml(order.time)}
         </p>
-        <p class="order-detail__line"><b>${order.delivery}</b> ${order.address}</p>
-        <p class="order-detail__line"><b>Способ оплаты</b> ${order.payment}</p>
+        <p class="order-detail__line"><b>${escapeHtml(order.delivery)}</b> ${escapeHtml(order.address)}</p>
+        <p class="order-detail__line"><b>Способ оплаты</b> ${escapeHtml(order.payment)}</p>
 
         <h2 class="order-detail__subtitle">Сумма заказов</h2>
         <div class="order-detail__sum">

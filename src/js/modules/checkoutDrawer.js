@@ -2,6 +2,7 @@ import mockApi from '../api/mockApi.js';
 import { renderCheck } from '../components/check.js';
 import { createAssetResolver } from '../utils/assets.js';
 import { createFocusTrap } from '../utils/focusTrap.js';
+import { escapeHtml } from '../utils/dom.js';
 import { EVENTS } from '../constants.js';
 
 const imageUrl = createAssetResolver(
@@ -18,7 +19,7 @@ let activeBranch = 0;
 function addressContent() {
   return `
     <div class="side-drawer__head">
-      <h2 class="side-drawer__title">Адрес доставки</h2>
+      <h2 class="side-drawer__title" id="side-drawer-title">Адрес доставки</h2>
       <button class="side-drawer__close" type="button" data-drawer-close aria-label="Закрыть">
         <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
       </button>
@@ -53,7 +54,7 @@ const branchCard = (b, i) => `
 function branchesContent() {
   return `
     <div class="side-drawer__head">
-      <h2 class="side-drawer__title">Филиалы</h2>
+      <h2 class="side-drawer__title" id="side-drawer-title">Филиалы</h2>
       <button class="side-drawer__close" type="button" data-drawer-close aria-label="Закрыть">
         <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
       </button>
@@ -98,7 +99,7 @@ function renderSuggest(input) {
     return;
   }
   suggest.innerHTML = results
-    .map((r) => `<li><button class="address-field__suggest-item" type="button" data-address-pick="${r}">${r}</button></li>`)
+    .map((r) => `<li><button class="address-field__suggest-item" type="button" data-address-pick="${escapeHtml(r)}">${escapeHtml(r)}</button></li>`)
     .join('');
   suggest.hidden = false;
 }
@@ -160,6 +161,9 @@ export function initCheckoutDrawer() {
 
   panel = document.createElement('aside');
   panel.className = 'side-drawer';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-modal', 'true');
+  panel.setAttribute('aria-labelledby', 'side-drawer-title');
   panel.setAttribute('aria-hidden', 'true');
 
   document.body.append(backdrop, panel);

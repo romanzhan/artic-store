@@ -12,7 +12,6 @@ export const LAYERS = {
   search: 'search',
   cart: 'cart',
   auth: 'auth',
-  account: 'account',
   sizeChart: 'size-chart',
   orderGate: 'order-gate',
   orderSuccess: 'order-success',

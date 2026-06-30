@@ -19,6 +19,7 @@ import {
 } from './orderSummary.js';
 import { lockScroll, unlockScroll } from '../utils/scrollLock.js';
 import { showOverlay, hideOverlay, setOverlayFront } from './overlay.js';
+import { escapeHtml } from '../utils/dom.js';
 import { EVENTS, LAYERS } from '../constants.js';
 
 let panel = null;
@@ -46,15 +47,15 @@ function renderItem(line) {
 
   return `
     <article class="cart-item"${isProduct ? ` data-product-id="${line.productId}"` : ''}>
-      <a class="cart-item__media" href="${line.href}">
-        <img class="cart-item__img" src="${resolveCartImage(line.image)}" alt="${line.title}" loading="lazy" />
+      <a class="cart-item__media" href="${escapeHtml(line.href)}">
+        <img class="cart-item__img" src="${resolveCartImage(line.image)}" alt="${escapeHtml(line.title)}" loading="lazy" />
       </a>
       <div class="cart-item__body">
         <div class="cart-item__head">
           <div class="cart-item__id">
-            <span class="cart-item__brand">${line.brand}</span>
-            <a class="cart-item__title" href="${line.href}">${line.title}</a>
-            <span class="cart-item__meta">${line.meta}</span>
+            <span class="cart-item__brand">${escapeHtml(line.brand)}</span>
+            <a class="cart-item__title" href="${escapeHtml(line.href)}">${escapeHtml(line.title)}</a>
+            <span class="cart-item__meta">${escapeHtml(line.meta)}</span>
           </div>
           <div class="cart-item__tools">
             ${fav}
@@ -143,6 +144,7 @@ function open() {
   render();
   panel.classList.add('is-open');
   panel.setAttribute('aria-hidden', 'false');
+  document.querySelectorAll('[data-cart-open]').forEach((el) => el.setAttribute('aria-expanded', 'true'));
   lockScroll();
   showOverlay();
   setOverlayFront(true);
@@ -157,6 +159,7 @@ function close() {
   clearBuyNow();
   panel.classList.remove('is-open');
   panel.setAttribute('aria-hidden', 'true');
+  document.querySelectorAll('[data-cart-open]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
   unlockScroll();
   setOverlayFront(false);
   hideOverlay();
@@ -236,6 +239,8 @@ export function initCart() {
   panel = document.createElement('aside');
   panel.className = 'cart';
   panel.setAttribute('data-cart-drawer', '');
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-modal', 'true');
   panel.setAttribute('aria-label', 'Корзина');
   panel.setAttribute('aria-hidden', 'true');
   document.body.appendChild(panel);

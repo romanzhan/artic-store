@@ -1,12 +1,22 @@
-import mockApi from '../api/mockApi.js';
+import mockApi, { STORAGE_KEYS } from '../api/mockApi.js';
 
 let lines = mockApi.getCart();
 const listeners = new Set();
 
-function notify() {
-  mockApi.saveCart(lines);
+function emit() {
   for (const listener of listeners) listener();
 }
+
+function notify() {
+  mockApi.saveCart(lines);
+  emit();
+}
+
+window.addEventListener('storage', (event) => {
+  if (event.key !== null && event.key !== STORAGE_KEYS.cart) return;
+  lines = mockApi.getCart();
+  emit();
+});
 
 export const cartStore = {
   lines() {
@@ -15,10 +25,6 @@ export const cartStore = {
 
   count() {
     return lines.reduce((total, line) => total + line.qty, 0);
-  },
-
-  subtotal() {
-    return lines.reduce((sum, line) => sum + line.price * line.qty, 0);
   },
 
   add(line) {

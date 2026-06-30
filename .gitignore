@@ -10,3 +10,7 @@ dist
 raw/
 _*.mjs
 _*.png
+
+# артефакт Windows-перенаправления вывода в устройство nul
+nul
+nul.map

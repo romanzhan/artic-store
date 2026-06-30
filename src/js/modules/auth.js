@@ -6,6 +6,7 @@ import { createAssetResolver } from '../utils/assets.js';
 import { createFocusTrap } from '../utils/focusTrap.js';
 import { lockScroll, unlockScroll } from '../utils/scrollLock.js';
 import { go, BASE } from '../utils/base.js';
+import { escapeHtml } from '../utils/dom.js';
 import { showOverlay, hideOverlay, setOverlayFront } from './overlay.js';
 import { EVENTS, LAYERS } from '../constants.js';
 
@@ -87,7 +88,7 @@ const views = {
 
   confirm: () => `
     <form class="auth__form" data-auth-form="confirm" novalidate>
-      <p class="auth__text">Мы выслали Вам код подтверждения на почту <b>${state.email}</b>. Введите его в поле ниже:</p>
+      <p class="auth__text">Мы выслали Вам код подтверждения на почту <b>${escapeHtml(state.email)}</b>. Введите его в поле ниже:</p>
       ${field('<input class="auth__input" type="text" inputmode="numeric" placeholder="Код из письма" data-name="code" autocomplete="one-time-code" />')}
       <button class="auth__link auth__resend" type="button" data-auth-resend>Запросить код повторно</button>
       <div class="auth__actions">
@@ -280,6 +281,7 @@ export function openAuth(view = 'login', after = null) {
   renderPanel();
   panel.classList.add('is-open');
   panel.setAttribute('aria-hidden', 'false');
+  document.querySelectorAll('[data-account][aria-haspopup]').forEach((el) => el.setAttribute('aria-expanded', 'true'));
   lockScroll();
   showOverlay();
   setOverlayFront(true);
@@ -294,6 +296,7 @@ function close() {
   stopTimer();
   panel.classList.remove('is-open');
   panel.setAttribute('aria-hidden', 'true');
+  document.querySelectorAll('[data-account][aria-haspopup]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
   unlockScroll();
   setOverlayFront(false);
   hideOverlay();
@@ -347,7 +350,17 @@ export function initAuth() {
   });
 
   const syncHeader = () => {
-    document.querySelectorAll('[data-account]').forEach((el) => el.classList.toggle('is-active', authStore.isAuthed()));
+    const authed = authStore.isAuthed();
+    document.querySelectorAll('[data-account]').forEach((el) => {
+      el.classList.toggle('is-active', authed);
+      if (authed) {
+        el.removeAttribute('aria-haspopup');
+        el.removeAttribute('aria-expanded');
+      } else {
+        el.setAttribute('aria-haspopup', 'dialog');
+        el.setAttribute('aria-expanded', String(isOpen));
+      }
+    });
   };
   authStore.subscribe(syncHeader);
   syncHeader();

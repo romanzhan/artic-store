@@ -293,6 +293,8 @@ function onKeydown(event) {
 export function initCheckout() {
   panel = document.createElement('section');
   panel.className = 'checkout';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-modal', 'true');
   panel.setAttribute('aria-label', 'Оформление заказа');
   panel.setAttribute('aria-hidden', 'true');
   data = mockApi.getCheckout();
