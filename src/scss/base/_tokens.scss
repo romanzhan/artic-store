@@ -1,0 +1,97 @@
+:root {
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Noto Sans', sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 900;
+
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-40: 40px;
+  --fs-120: 120px;
+
+  --color-accent: #e75f00;
+  --color-accent-hover: #d05600;
+  --color-accent-active: #bd4e00;
+  --color-success: #00917d;
+  --color-navy: #0a1929;
+  --color-gray: #434343;
+  --color-gray-light: #959595;
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  --color-text: var(--color-navy);
+  --color-text-secondary: var(--color-gray);
+  --color-text-muted: var(--color-gray-light);
+  --color-text-on-accent: var(--color-white);
+
+  --color-bg: var(--color-white);
+  --color-bg-muted: #f1f1f1;
+  --color-glass: color-mix(in srgb, var(--color-white) 75%, transparent);
+  --color-panel: color-mix(in srgb, var(--color-white) 90%, transparent);
+  --color-scrim: color-mix(in srgb, var(--color-black) 25%, transparent);
+
+  --color-border: var(--color-gray-light);
+  --color-border-focus: var(--color-accent);
+  --color-error: #e02b2b;
+
+  --container-width: 1228px;
+  --container-gutter: 16px;
+  --dropdown-content-height: 420px;
+
+  --logo-width: 194px;
+  --badge-size: 60px;
+  --scrollbar-size: 14px;
+  --cart-width: 480px;
+
+  --accent-line-width: 150px;
+  --accent-line-height: 2px;
+
+  --btn-icon-w: 28px;
+  --btn-icon-h: 18px;
+  --btn-icon-w-lg: 32px;
+  --btn-icon-h-lg: 21px;
+  --btn-icon-w-sm: 26px;
+  --btn-icon-h-sm: 17px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-pill: 999px;
+
+  --z-dropdown: 200;
+  --z-overlay: 900;
+  --z-header: 1000;
+  --z-modal: 1100;
+  --z-toast: 1200;
+
+  --transition-base: 0.25s ease;
+
+  --shadow-bullet: 0 1px 4px rgb(0 0 0 / 55%);
+  --shadow-nav: 0 4px 12px rgb(0 0 0 / 12%);
+  --shadow-card:
+    0 6px 16px rgb(0 0 0 / 12%),
+    0 2px 6px rgb(0 0 0 / 8%);
+  --shadow-surface:
+    0 0 20px rgb(0 0 0 / 5%),
+    0 12px 40px rgb(0 0 0 / 10%);
+}

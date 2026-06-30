@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Товар — Artic Store</title>
+    <style>
+      .overlay,
+      .search,
+      .mega-menu,
+      .mobile-menu {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {{> layout/sprite }}
+
+    {{> layout/header }}
+
+    <main class="main">
+      <div class="surface product" data-product>
+        <nav class="breadcrumbs" aria-label="Хлебные крошки" data-breadcrumbs></nav>
+        <div class="product__top">
+          <div class="product__gallery" data-gallery></div>
+          <div class="product__info" data-info></div>
+        </div>
+        <div class="product__details" data-details></div>
+        <section class="products-slider product__related" data-related></section>
+      </div>
+    </main>
+
+    {{> layout/footer }}
+
+    {{> layout/mobile-menu }}
+
+    <div class="overlay" data-overlay></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

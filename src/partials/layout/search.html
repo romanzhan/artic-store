@@ -1,0 +1,31 @@
+<div class="search" id="search-modal" role="dialog" aria-modal="true" aria-label="Поиск по каталогу" data-search-modal aria-hidden="true">
+  <div class="container search__inner">
+    <form class="search__form" data-search-form>
+      <div class="search__field">
+        <svg class="icon search__field-icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+        <input
+          class="search__input"
+          type="search"
+          name="search"
+          placeholder="Поиск"
+          autocomplete="off"
+          data-search-input
+        />
+        <button class="search__clear" type="button" aria-label="Очистить" data-search-clear hidden>
+          <svg class="icon" aria-hidden="true"><use href="#icon-clear"></use></svg>
+        </button>
+      </div>
+
+      <button class="search__submit btn btn--primary btn--compact-mobile" type="submit">
+        Найти
+        <svg class="icon btn__icon" aria-hidden="true"><use href="#icon-arrow-circle"></use></svg>
+      </button>
+
+      <button class="search__close" type="button" aria-label="Закрыть поиск" data-search-close>
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </form>
+
+    <div class="search__results" data-search-results></div>
+  </div>
+</div>

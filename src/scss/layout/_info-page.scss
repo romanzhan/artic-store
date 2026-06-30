@@ -1,0 +1,124 @@
+@use '../abstracts' as *;
+
+.info-page {
+  --info-media-w: 460px;
+  --info-doc-w: 820px;
+
+  &.surface {
+    gap: 0;
+  }
+
+  .breadcrumbs {
+    margin-block-end: var(--space-24);
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) min(var(--info-media-w), 42%);
+    gap: var(--space-64);
+    align-items: start;
+  }
+
+  &__title {
+    width: fit-content;
+    font-size: var(--fs-22);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    color: var(--color-text);
+
+    @include title-accent;
+  }
+
+  &__lead {
+    margin-block-start: var(--space-16);
+    margin-block-end: var(--space-40);
+    font-size: var(--fs-16);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin-block-end: var(--space-40);
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  &__subheading {
+    width: fit-content;
+    font-size: var(--fs-18);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    color: var(--color-text);
+
+    @include title-accent;
+  }
+
+  &__text {
+    font-size: var(--fs-16);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+
+    &--strong {
+      font-weight: var(--fw-bold);
+      color: var(--color-text);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  &__item {
+    position: relative;
+    padding-inline-start: var(--space-24);
+    font-size: var(--fs-16);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: 0.6em;
+      width: var(--space-8);
+      height: var(--space-8);
+      background-color: var(--color-accent);
+    }
+  }
+
+  &--doc &__content {
+    max-width: var(--info-doc-w);
+  }
+
+  &__media {
+    position: sticky;
+    inset-block-start: var(--space-24);
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background-color: var(--color-bg-muted);
+  }
+
+  @include respond-to('tablet') {
+    &__layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-40);
+    }
+
+    &__media {
+      position: static;
+      max-width: var(--info-media-w);
+    }
+  }
+}

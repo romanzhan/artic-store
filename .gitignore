@@ -1,0 +1,12 @@
+node_modules
+dist
+.deploy-worktree
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+
+# исходники изображений и временные скрипты
+raw/
+_*.mjs
+_*.png

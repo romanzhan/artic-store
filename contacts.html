@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Контакты — Artic Store</title>
+    <style>
+      .overlay,
+      .search,
+      .mega-menu,
+      .mobile-menu {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {{> layout/sprite }}
+
+    {{> layout/header }}
+
+    <main class="main">
+      <div class="surface contacts" data-contacts>
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a class="breadcrumbs__link" href="/">Главная</a>
+          <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+          <span class="breadcrumbs__current" aria-current="page">Контакты</span>
+        </nav>
+
+        <h1 class="contacts__title">Контакты</h1>
+
+        <div class="contacts__top">
+          <div class="contacts__form-col">
+            <p class="contacts__subtitle">Есть вопросы или предложения? Оставьте данные ниже и мы обязательно свяжемся с Вами в ближайшее время</p>
+
+            <form class="contacts__form" data-contact-form novalidate>
+              <label class="contacts__field">
+                <input class="contacts__input" type="text" placeholder="Имя" aria-label="Имя" data-name="name" data-required autocomplete="name" aria-describedby="contacts-error-name" />
+                <span class="contacts__error" id="contacts-error-name" data-error aria-live="polite"></span>
+              </label>
+              <label class="contacts__field">
+                <input class="contacts__input" type="tel" placeholder="+7 000 000 00 00" aria-label="Телефон" data-name="phone" data-required autocomplete="tel" aria-describedby="contacts-error-phone" />
+                <span class="contacts__error" id="contacts-error-phone" data-error aria-live="polite"></span>
+              </label>
+              <label class="contacts__field">
+                <textarea class="contacts__textarea" placeholder="Ваш вопрос/проблема" aria-label="Ваш вопрос или проблема" data-name="message" data-required rows="4" aria-describedby="contacts-error-message"></textarea>
+                <span class="contacts__error" id="contacts-error-message" data-error aria-live="polite"></span>
+              </label>
+              <p class="contacts__success" data-contact-note role="status"></p>
+              <button class="btn btn--filled contacts__submit" type="submit">Отправить</button>
+            </form>
+          </div>
+
+          <div class="contacts__info">
+            <a class="contacts__line" href="tel:+79029222985">
+              <span class="contacts__line-icon"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg></span>
+              <span class="contacts__line-main">8 902 922 29 85</span>
+              <span class="contacts__line-sub">Ежедневно с 10:00 до 21:00</span>
+            </a>
+            <a class="contacts__line" href="mailto:Support@articstore.ru">
+              <span class="contacts__line-icon"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg></span>
+              <span class="contacts__line-main">Support@articstore.ru</span>
+              <span class="contacts__line-sub">Email</span>
+            </a>
+
+            <div class="contacts__divider" role="separator"></div>
+
+            <div class="contacts__socials">
+              <span class="contacts__socials-title">Новости, акции, новинки</span>
+              <ul class="contacts__socials-list">
+                <li><a class="contacts__social" href="#" aria-label="Telegram"><svg class="icon" aria-hidden="true"><use href="#icon-telegram"></use></svg></a></li>
+                <li><a class="contacts__social" href="#" aria-label="MAX"><svg class="icon" aria-hidden="true"><use href="#icon-max"></use></svg></a></li>
+                <li><a class="contacts__social" href="#" aria-label="ВКонтакте"><svg class="icon" aria-hidden="true"><use href="#icon-vk"></use></svg></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="contacts__map-block">
+          <div class="contacts__map" data-contacts-map></div>
+          <div class="contacts__branches">
+            <div class="contacts__branches-inner">
+              <h2 class="contacts__branches-title">Филиалы</h2>
+              <div class="branch-list" data-contacts-branches></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> layout/footer }}
+
+    {{> layout/mobile-menu }}
+
+    <div class="overlay" data-overlay></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

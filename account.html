@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Личный кабинет — Artic Store</title>
+    <style>
+      .overlay,
+      .search,
+      .mega-menu,
+      .mobile-menu {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {{> layout/sprite }}
+
+    {{> layout/header }}
+
+    <main class="main">
+      <div class="account" data-account-page></div>
+    </main>
+
+    {{> layout/footer }}
+
+    {{> layout/mobile-menu }}
+
+    <div class="overlay" data-overlay></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+@use '../abstracts' as *;
+
+.modal--wide {
+  --modal-w: 640px;
+
+  max-height: calc(100dvh - var(--space-40));
+  overflow-y: auto;
+}
+
+.size-chart {
+  --size-chart-term-w: 72px;
+
+  &__scroll {
+    margin-block-end: var(--space-32);
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-14);
+  }
+
+  &__head {
+    padding: var(--space-12);
+    font-size: var(--fs-12);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: start;
+    white-space: nowrap;
+    color: var(--color-text-secondary);
+    border-block-end: 2px solid var(--color-text);
+  }
+
+  &__row {
+    transition: background-color var(--transition-base);
+
+    &:hover {
+      background-color: var(--color-bg-muted);
+    }
+
+    &.is-active {
+      background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-white));
+    }
+  }
+
+  &__cell {
+    padding: var(--space-12);
+    text-align: start;
+    white-space: nowrap;
+    color: var(--color-text-secondary);
+    border-block-end: 1px solid var(--color-border);
+  }
+
+  &__cell--ru {
+    font-weight: var(--fw-bold);
+    color: var(--color-text);
+  }
+
+  &__row.is-active &__cell--ru {
+    color: var(--color-accent);
+  }
+
+  &__guide-title {
+    margin-block-end: var(--space-16);
+    font-size: var(--fs-16);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  &__tips {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  &__tip {
+    display: grid;
+    grid-template-columns: var(--size-chart-term-w) 1fr;
+    gap: var(--space-16);
+    font-size: var(--fs-14);
+    line-height: 1.5;
+  }
+
+  &__tip-term {
+    font-weight: var(--fw-semibold);
+    color: var(--color-text);
+  }
+
+  &__tip-text {
+    color: var(--color-text-secondary);
+  }
+}

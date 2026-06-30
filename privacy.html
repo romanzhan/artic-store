@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Политика конфиденциальности — Artic Store</title>
+    <style>
+      .overlay,
+      .search,
+      .mega-menu,
+      .mobile-menu {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {{> layout/sprite }}
+
+    {{> layout/header }}
+
+    <main class="main">
+      <div class="surface info-page info-page--doc">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a class="breadcrumbs__link" href="/">Главная</a>
+          <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+          <span class="breadcrumbs__current" aria-current="page">Политика конфиденциальности</span>
+        </nav>
+
+        <div class="info-page__content">
+          <h1 class="info-page__title">Политика конфиденциальности</h1>
+          <p class="info-page__lead">Настоящая Политика описывает порядок обработки и защиты персональных данных пользователей интернет-магазина Artic Store. Текст приведён в качестве примера и будет дополнен окончательной редакцией.</p>
+
+          <section class="info-page__section">
+            <h2 class="info-page__subheading">1. Общие положения</h2>
+            <p class="info-page__text">Политика разработана в соответствии с требованиями действующего законодательства о персональных данных и определяет порядок их обработки, а также меры по обеспечению безопасности данных пользователей.</p>
+            <p class="info-page__text">Используя сайт, пользователь выражает согласие с условиями настоящей Политики. В случае несогласия с её условиями пользователь должен воздержаться от использования сайта.</p>
+          </section>
+
+          <section class="info-page__section">
+            <h2 class="info-page__subheading">2. Какие данные мы обрабатываем</h2>
+            <p class="info-page__text">В процессе работы сайта могут обрабатываться следующие данные пользователя:</p>
+            <ul class="info-page__list">
+              <li class="info-page__item">фамилия, имя, контактный телефон и адрес электронной почты;</li>
+              <li class="info-page__item">адрес доставки и сведения, необходимые для оформления заказа;</li>
+              <li class="info-page__item">технические данные: IP-адрес, сведения о браузере и устройстве, файлы cookie.</li>
+            </ul>
+          </section>
+
+          <section class="info-page__section">
+            <h2 class="info-page__subheading">3. Цели обработки данных</h2>
+            <p class="info-page__text">Персональные данные обрабатываются для оформления и доставки заказов, информирования о статусе заказа, обратной связи с пользователем, а также для улучшения работы сервиса.</p>
+          </section>
+
+          <section class="info-page__section">
+            <h2 class="info-page__subheading">4. Передача данных третьим лицам</h2>
+            <p class="info-page__text">Персональные данные могут передаваться курьерским и платёжным службам исключительно в объёме, необходимом для исполнения заказа. Передача данных в иных целях без согласия пользователя не осуществляется.</p>
+          </section>
+
+          <section class="info-page__section">
+            <h2 class="info-page__subheading">5. Права пользователя</h2>
+            <p class="info-page__text">Пользователь вправе запросить сведения об обработке своих данных, потребовать их уточнения, блокирования или удаления, а также отозвать ранее данное согласие на обработку, направив соответствующее обращение по контактам, указанным ниже.</p>
+          </section>
+
+          <section class="info-page__section">
+            <h2 class="info-page__subheading">6. Контактная информация</h2>
+            <p class="info-page__text">По вопросам обработки персональных данных вы можете обратиться по телефону 8 902 922 29 85 или по адресу: г. Красноярск, ул. Белинского, 8, интернет-магазин Artic Store.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    {{> layout/footer }}
+
+    {{> layout/mobile-menu }}
+
+    <div class="overlay" data-overlay></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

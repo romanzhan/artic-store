@@ -1,0 +1,23 @@
+@use '../abstracts' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  background-color: var(--color-scrim);
+
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity var(--transition-base),
+    visibility var(--transition-base);
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &.is-front {
+    z-index: calc(var(--z-modal) - 1);
+  }
+}
