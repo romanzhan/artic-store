@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Страница не найдена — Artic Store</title>
+    <style>
+      .overlay,
+      .search,
+      .mega-menu,
+      .mobile-menu {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {{> layout/sprite }}
+
+    {{> layout/header }}
+
+    <main class="main">
+      <div class="surface not-found">
+        <p class="not-found__code" aria-hidden="true">404</p>
+        <h1 class="not-found__title">Страница не найдена</h1>
+        <p class="not-found__text">Возможно, она была удалена, переехала по другому адресу или в ссылке закралась опечатка.</p>
+
+        <div class="not-found__actions">
+          <a class="btn btn--filled not-found__btn" href="/">На главную</a>
+          <a class="btn btn--primary btn--ghost-dark not-found__btn" href="/catalog">
+            <span>В каталог</span>
+            <svg class="icon btn__icon" aria-hidden="true"><use href="#icon-arrow-circle"></use></svg>
+          </a>
+        </div>
+
+        <nav class="not-found__links" aria-label="Популярные разделы">
+          <span class="not-found__links-label">Часто ищут:</span>
+          <a class="not-found__link" href="/catalog/women">Женское</a>
+          <a class="not-found__link" href="/catalog/men">Мужское</a>
+          <a class="not-found__link" href="/gift">Сертификаты</a>
+          <a class="not-found__link" href="/contacts">Контакты</a>
+        </nav>
+      </div>
+    </main>
+
+    {{> layout/footer }}
+
+    {{> layout/mobile-menu }}
+
+    <div class="overlay" data-overlay></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

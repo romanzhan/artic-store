@@ -1,0 +1,43 @@
+<header class="header">
+  <div class="container header__inner">
+    <button class="header__burger burger" type="button" aria-label="Открыть меню" aria-haspopup="dialog" aria-expanded="false" aria-controls="mobile-menu" data-burger>
+      <span class="burger__line burger__line--top"></span>
+      <span class="burger__line burger__line--mid"></span>
+      <span class="burger__line burger__line--bottom"></span>
+    </button>
+
+    <a class="header__logo" href="/" aria-label="Artic Store — на главную">
+      <img src="/src/assets/images/logo.png" alt="Artic Store" width="194" height="30" />
+    </a>
+
+    <nav class="header__nav" aria-label="Основное меню">
+      <ul class="header__nav-list">
+        <li><a class="header__nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="mega-menu" data-mega-trigger data-category="women">ЖЕНСКОЕ</a></li>
+        <li><a class="header__nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="mega-menu" data-mega-trigger data-category="men">МУЖСКОЕ</a></li>
+        <li><a class="header__nav-link" href="/catalog/sale">АКЦИИ</a></li>
+        <li><a class="header__nav-link" href="/gift">ПОДАРОЧНЫЕ КАРТЫ</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <button class="header__action header__action--search" type="button" aria-label="Поиск" aria-haspopup="dialog" aria-expanded="false" aria-controls="search-modal" data-search>
+        <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+      </button>
+      <a class="header__action header__action--favorite" href="/account/favorites" aria-label="Избранное">
+        <svg class="icon" aria-hidden="true"><use href="#icon-favorite"></use></svg>
+        <span class="header__counter" data-favorite-count></span>
+      </a>
+      <button class="header__action header__action--account" type="button" aria-label="Личный кабинет" aria-haspopup="dialog" aria-expanded="false" data-account>
+        <svg class="icon" aria-hidden="true"><use href="#icon-account"></use></svg>
+      </button>
+      <button class="header__action header__action--cart" type="button" aria-label="Корзина" aria-haspopup="dialog" aria-expanded="false" data-cart-open>
+        <svg class="icon" aria-hidden="true"><use href="#icon-cart"></use></svg>
+        <span class="header__counter" data-cart-count></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mega-menu" id="mega-menu" data-mega-menu></div>
+
+  {{> layout/search }}
+</header>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Оплата — Artic Store</title>
+    <style>
+      .overlay,
+      .search,
+      .mega-menu,
+      .mobile-menu {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {{> layout/sprite }}
+
+    {{> layout/header }}
+
+    <main class="main">
+      <div class="surface info-page">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a class="breadcrumbs__link" href="/">Главная</a>
+          <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+          <span class="breadcrumbs__current" aria-current="page">Оплата</span>
+        </nav>
+
+        <div class="info-page__layout">
+          <div class="info-page__content">
+            <h1 class="info-page__title">Оплата</h1>
+            <p class="info-page__lead">Выберите свой комфортный способ оплаты</p>
+
+            <section class="info-page__section">
+              <h2 class="info-page__subheading">Картой на сайте</h2>
+              <p class="info-page__text">Все операции с банковскими картами осуществляются в соответствии со стандартом безопасности индустрии платежных карт (Payment Card Industry Standards Council, PCI DSS) с использованием двухфакторной аутентификации по технологии 3-D Secure, MasterCard SecureCode, Verified by Visa.</p>
+            </section>
+
+            <section class="info-page__section">
+              <h2 class="info-page__subheading">Картой курьеру</h2>
+              <p class="info-page__text">Оплата заказа производится в момент доставки. В случае, если Вы хотите оплатить заказ банковской картой заранее — сообщите об этом менеджеру при согласовании доставки.</p>
+            </section>
+
+            <section class="info-page__section">
+              <h2 class="info-page__subheading">В филиалах</h2>
+              <p class="info-page__text">Оплата производится в момент получения заказа. Оплата может быть произведена как картой, так и наличными — без ограничений.</p>
+            </section>
+          </div>
+
+          <div class="info-page__media">
+            <img class="info-page__img" src="/src/assets/images/info-page/info.webp" alt="Подарочная упаковка Artic Store" />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> layout/footer }}
+
+    {{> layout/mobile-menu }}
+
+    <div class="overlay" data-overlay></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+@use '../abstracts' as *;
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  background-clip: padding-box;
+  border: var(--space-4) solid transparent;
+  border-radius: var(--radius-pill);
+
+  &:hover {
+    background-color: var(--color-accent);
+  }
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-regular);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.container {
+  @include container-width;
+}
+
+.main {
+  padding-block-end: var(--space-40);
+  background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-muted));
+
+  @include respond-to('tablet') {
+    padding-block-end: 0;
+  }
+
+  @include respond-to('mobile') {
+    background: var(--color-bg);
+  }
+}

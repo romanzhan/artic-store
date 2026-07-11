@@ -1,0 +1,74 @@
+@use '../abstracts' as *;
+
+.modal {
+  --modal-w: 440px;
+
+  position: fixed;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  z-index: var(--z-modal);
+  width: min(var(--modal-w), calc(100vw - var(--space-32)));
+  padding: var(--space-32);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-surface);
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.96);
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base),
+    visibility var(--transition-base);
+
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    --icon-size: 24px;
+
+    position: absolute;
+    inset-block-start: var(--space-20);
+    inset-inline-end: var(--space-20);
+    display: inline-flex;
+    color: var(--color-text);
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__title {
+    width: fit-content;
+    margin-block-end: var(--space-20);
+    font-size: var(--fs-22);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    color: var(--color-text);
+
+    @include title-accent(60px);
+  }
+
+  &__text {
+    margin-block-end: var(--space-24);
+    font-size: var(--fs-16);
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  &__btn {
+    width: 100%;
+    justify-content: center;
+    padding-block: var(--space-12);
+    white-space: normal;
+  }
+}

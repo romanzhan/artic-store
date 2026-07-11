@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Доставка и возврат — Artic Store</title>
+    <style>
+      .overlay,
+      .search,
+      .mega-menu,
+      .mobile-menu {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {{> layout/sprite }}
+
+    {{> layout/header }}
+
+    <main class="main">
+      <div class="surface info-page">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a class="breadcrumbs__link" href="/">Главная</a>
+          <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+          <span class="breadcrumbs__current" aria-current="page">Доставка и возврат</span>
+        </nav>
+
+        <div class="info-page__layout">
+          <div class="info-page__content">
+            <h1 class="info-page__title">Доставка и возврат</h1>
+            <p class="info-page__lead">Мы находимся в г. Красноярске и отправляем Ваши заказы только проверенными курьерскими службами. Доставка осуществляется на указанный Вами адрес при формировании заказа. Доставка осуществляется по городу и ближайшие населенные пункты.</p>
+
+            <section class="info-page__section">
+              <h2 class="info-page__subheading">Курьерская доставка</h2>
+              <p class="info-page__text">При выборе способа оплаты заказа «Наличными или картой курьеру» Вы имеете возможность примерить товар и оплатить только понравившиеся Вам вещи.</p>
+              <p class="info-page__text">Если после примерки Вы по какой-либо причине захотите отказаться от заказа, Вы возвращаете товар курьеру, оплачивая при этом только стоимость доставки.</p>
+              <p class="info-page__text">При выборе способа оплаты заказа Банковской картой возможность примерки отсутствует, курьер только доставляет и вручает Вам заказ.</p>
+              <p class="info-page__text info-page__text--strong">Стоимость доставки по г. Красноярск. Бесплатная доставка при заказе от 10 000 рублей. При заказе менее 10 000 рублей — доставка 800 рублей.</p>
+            </section>
+
+            <section class="info-page__section">
+              <h2 class="info-page__subheading">Возврат товара после покупки</h2>
+              <p class="info-page__text">Вы можете осуществить возврат товара в течение 7-ми календарных дней после получения заказа. Для этого вам необходимо:</p>
+              <ul class="info-page__list">
+                <li class="info-page__item">поставить в известность о Вашем решении нашего оператора по телефону 8 902 922 29 85;</li>
+                <li class="info-page__item">отправить вместе с товаром или по электронной почте заполненное заявление на возврат и копию страницы вашего паспорта (разворот с фотографией);</li>
+                <li class="info-page__item">отправить товар любым удобным для вас способом по адресу: г. Красноярск, ул. Белинского, 8, интернет-магазин ArticStore или самостоятельно привезти товар по адресу;</li>
+                <li class="info-page__item">денежные средства будут возвращены на Вашу банковскую карту в течение 10 дней после получения и проверки Вашего товара, но сроки зачисления средств на счет зависят от условий Вашего банка.</li>
+              </ul>
+              <p class="info-page__text">Обращаем Ваше внимание на то, что возврату подлежит только товар надлежащего качества при условии сохранности его товарного вида, оригинальной упаковки (в том числе бирок, пломб, ярлыков), а также потребительских свойств и документа, подтверждающего покупку. Товары, приобретенные в комплекте, необходимо возвращать в полной комплектации. Согласно Закону «О защите прав потребителей» и Постановлению Правительства РФ № 55 от 19.01.1998 г. товары интимного характера, ароматические свечи обмену и возврату не подлежат.</p>
+            </section>
+          </div>
+
+          <div class="info-page__media">
+            <img class="info-page__img" src="/src/assets/images/info-page/info.webp" alt="Подарочная упаковка Artic Store" />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    {{> layout/footer }}
+
+    {{> layout/mobile-menu }}
+
+    <div class="overlay" data-overlay></div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

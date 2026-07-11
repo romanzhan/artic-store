@@ -1,0 +1,19 @@
+@use '../abstracts' as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+}
+
+button,
+input,
+textarea,
+select,
+a {
+  font-family: inherit;
+}

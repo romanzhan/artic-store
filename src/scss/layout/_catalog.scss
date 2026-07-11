@@ -1,0 +1,205 @@
+@use '../abstracts' as *;
+
+.catalog {
+  --catalog-aside: 200px;
+  --catalog-back: 40px;
+
+  &.surface {
+    gap: 0;
+  }
+
+  .breadcrumbs {
+    margin-block-end: var(--space-24);
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    margin-block-end: var(--space-40);
+  }
+
+  &__back-wrap {
+    display: contents;
+  }
+
+  &__back {
+    display: none;
+
+    @include respond-to('tablet') {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: var(--catalog-back);
+      height: var(--catalog-back);
+      color: var(--color-text);
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      cursor: pointer;
+      transition:
+        color var(--transition-base),
+        border-color var(--transition-base);
+
+      .icon {
+        --icon-size: 20px;
+      }
+
+      &:hover {
+        color: var(--color-accent);
+        border-color: var(--color-accent);
+        box-shadow: inset 0 0 0 1px var(--color-accent);
+      }
+    }
+  }
+
+  &__title {
+    width: fit-content;
+    margin-inline-end: auto;
+    font-size: var(--fs-22);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    color: var(--color-text);
+
+    @include title-accent;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: var(--catalog-aside) 1fr;
+    gap: var(--space-40);
+    align-items: start;
+  }
+
+  &__content {
+    min-width: 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-24);
+  }
+
+  &__empty {
+    grid-column: 1 / -1;
+    padding-block: var(--space-40);
+    font-size: var(--fs-18);
+    color: var(--color-text-secondary);
+  }
+
+  @include respond-to('tablet') {
+    &.surface {
+      padding-block-start: 0;
+    }
+
+    &__aside {
+      display: none;
+    }
+
+    &__body {
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+  }
+
+  @include respond-to('mobile') {
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-16);
+    }
+  }
+}
+
+.cat-nav {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  &__gender {
+    font-size: var(--fs-18);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    color: var(--color-text);
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__item--active > &__gender {
+    color: var(--color-text);
+  }
+
+  &__item--active:not(:has(&__group-item--active)) > &__gender {
+    color: var(--color-accent);
+  }
+
+  &__groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    margin-block-start: var(--space-16);
+    padding-inline-start: var(--space-12);
+  }
+
+  &__group {
+    font-size: var(--fs-16);
+    font-weight: var(--fw-semibold);
+    color: var(--color-text);
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__group-item--active > &__group {
+    position: relative;
+    color: var(--color-text);
+  }
+
+  &__group-item--active:not(:has(&__sublink--active)) > &__group {
+    color: var(--color-accent);
+  }
+
+  &__marker {
+    --icon-size: 18px;
+    position: absolute;
+    inset-inline-start: calc(-1 * var(--space-24));
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text);
+  }
+
+  &__group-item--active:not(:has(&__sublink--active)) &__marker {
+    color: var(--color-accent);
+  }
+
+  &__sub {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-block-start: var(--space-8);
+    padding-inline-start: var(--space-12);
+  }
+
+  &__sublink {
+    font-size: var(--fs-14);
+    color: var(--color-text-secondary);
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+
+    &--active {
+      font-weight: var(--fw-semibold);
+      color: var(--color-accent);
+    }
+  }
+}

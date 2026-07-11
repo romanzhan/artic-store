@@ -1,0 +1,88 @@
+@use '../abstracts' as *;
+
+.not-found {
+  --not-found-accent-w: 80px;
+  --not-found-text-w: 480px;
+
+  &.surface {
+    align-items: center;
+    gap: var(--space-24);
+    padding-block: var(--space-80);
+    text-align: center;
+  }
+
+  &__code {
+    font-size: var(--fs-120);
+    font-weight: var(--fw-black);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+
+    &::after {
+      content: '';
+      display: block;
+      width: var(--not-found-accent-w);
+      height: var(--accent-line-height);
+      margin: var(--space-24) auto 0;
+      background-color: var(--color-accent);
+    }
+  }
+
+  &__title {
+    font-size: var(--fs-22);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  &__text {
+    max-width: var(--not-found-text-w);
+    font-size: var(--fs-16);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-16);
+    margin-block-start: var(--space-8);
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-16);
+    margin-block-start: var(--space-8);
+  }
+
+  &__links-label {
+    font-size: var(--fs-14);
+    color: var(--color-text-muted);
+  }
+
+  &__link {
+    font-size: var(--fs-14);
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  @include respond-to('mobile') {
+    &.surface {
+      padding-block: var(--space-48);
+    }
+
+    &__code {
+      font-size: var(--fs-40);
+    }
+  }
+}

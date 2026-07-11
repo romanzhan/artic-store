@@ -1,0 +1,129 @@
+@use '../abstracts' as *;
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background-color: var(--color-bg);
+
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition:
+    transform var(--transition-base),
+    visibility var(--transition-base);
+
+  &.is-open {
+    visibility: visible;
+    transform: none;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-16);
+  }
+
+  &__chips {
+    display: flex;
+    gap: var(--space-8);
+    margin-bottom: var(--space-16);
+
+    .chip {
+      flex: 1;
+    }
+  }
+
+  &__bar-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  &__title {
+    font-family: var(--font-secondary);
+    font-size: var(--fs-18);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  &__iconbtn {
+    display: inline-flex;
+    color: var(--color-text);
+    transition: color var(--transition-base);
+
+    .icon {
+      --icon-size: 22px;
+    }
+
+    &:hover {
+      color: var(--color-accent);
+    }
+
+    &--close .icon {
+      --icon-size: 26px;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    padding: var(--space-16);
+    overflow-y: auto;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-block: var(--space-16);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-16);
+    text-align: start;
+    color: var(--color-text);
+    background-color: transparent;
+    border-bottom: 1.2px solid var(--color-accent);
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+
+    .icon {
+      --icon-size: 20px;
+    }
+  }
+
+  &__sub {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding-block: var(--space-12) var(--space-16);
+  }
+
+  &__subtitle {
+    font-family: var(--font-secondary);
+    font-size: var(--fs-16);
+    font-weight: var(--fw-bold);
+    color: var(--color-text);
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  &__sublink {
+    font-size: var(--fs-16);
+    color: var(--color-text-secondary);
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+}
