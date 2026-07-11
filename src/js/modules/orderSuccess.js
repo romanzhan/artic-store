@@ -8,7 +8,7 @@ const content = () => `
   <h2 class="modal__title">Ваш заказ оформлен</h2>
   <p class="modal__text">Для отслеживания статуса заказа перейдите в личный кабинет в раздел «Мои заказы»</p>
   <div class="modal__actions">
-    <a class="btn btn--filled modal__btn" href="/account">Перейти</a>
+    <a class="btn btn--filled btn--cta modal__btn" href="/account">Перейти</a>
   </div>`;
 
 const modal = createCenteredModal({

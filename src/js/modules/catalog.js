@@ -44,7 +44,7 @@ function buildUrl(overrides = {}, { resetPage = true } = {}) {
 async function loadCatalog() {
   data = await mockApi.getCatalog(parseLocation());
   render();
-  root.querySelectorAll('[data-price]').forEach(syncPrice);
+  root.querySelectorAll('[data-price]').forEach((wrap) => syncPrice(wrap));
 }
 
 async function go(url) {
@@ -291,28 +291,51 @@ function applyCheckbox(key) {
 
 function applyPrice() {
   const wrap = root.querySelector('[data-filter="price"]');
+  normalizePrice(wrap.querySelector('[data-price]'));
   const min = wrap.querySelector('[data-price-input="min"]').value;
   const max = wrap.querySelector('[data-price-input="max"]').value;
   go(buildUrl({ priceMin: min, priceMax: max }));
 }
 
-function syncPrice(wrap) {
+function syncPrice(wrap, fromInput = false) {
   const rMin = wrap.querySelector('[data-price-range="min"]');
   const rMax = wrap.querySelector('[data-price-range="max"]');
   const iMin = wrap.querySelector('[data-price-input="min"]');
   const iMax = wrap.querySelector('[data-price-input="max"]');
   const fill = wrap.querySelector('[data-price-fill]');
-  const lo = Math.min(Number(rMin.value), Number(rMax.value));
-  const hi = Math.max(Number(rMin.value), Number(rMax.value));
-  rMin.value = lo;
-  rMax.value = hi;
-  iMin.value = lo;
-  iMax.value = hi;
+  if (fromInput) {
+    if (iMin.value !== '') rMin.value = iMin.value;
+    if (iMax.value !== '') rMax.value = iMax.value;
+  } else {
+    const lo = Math.min(Number(rMin.value), Number(rMax.value));
+    const hi = Math.max(Number(rMin.value), Number(rMax.value));
+    rMin.value = lo;
+    rMax.value = hi;
+    iMin.value = lo;
+    iMax.value = hi;
+  }
   const min = Number(wrap.dataset.min);
   const max = Number(wrap.dataset.max);
   const span = max - min || 1;
+  const lo = Math.min(Number(rMin.value), Number(rMax.value));
+  const hi = Math.max(Number(rMin.value), Number(rMax.value));
   fill.style.insetInlineStart = `${((lo - min) / span) * 100}%`;
   fill.style.insetInlineEnd = `${100 - ((hi - min) / span) * 100}%`;
+}
+
+function normalizePrice(wrap) {
+  const min = Number(wrap.dataset.min);
+  const max = Number(wrap.dataset.max);
+  const iMin = wrap.querySelector('[data-price-input="min"]');
+  const iMax = wrap.querySelector('[data-price-input="max"]');
+  const clamp = (value, fallback) =>
+    value === '' || Number.isNaN(Number(value)) ? fallback : Math.min(max, Math.max(min, Number(value)));
+  let lo = clamp(iMin.value, min);
+  let hi = clamp(iMax.value, max);
+  if (lo > hi) [lo, hi] = [hi, lo];
+  iMin.value = lo;
+  iMax.value = hi;
+  syncPrice(wrap, true);
 }
 
 function onClick(event) {
@@ -364,7 +387,12 @@ function onInput(event) {
   }
 
   const priceEl = event.target.closest('[data-price-range], [data-price-input]');
-  if (priceEl) syncPrice(priceEl.closest('[data-price]'));
+  if (priceEl) syncPrice(priceEl.closest('[data-price]'), priceEl.hasAttribute('data-price-input'));
+}
+
+function onChange(event) {
+  const input = event.target.closest('[data-price-input]');
+  if (input) normalizePrice(input.closest('[data-price]'));
 }
 
 export async function initCatalog() {
@@ -375,6 +403,7 @@ export async function initCatalog() {
 
   root.addEventListener('click', onClick);
   root.addEventListener('input', onInput);
+  root.addEventListener('change', onChange);
   window.addEventListener('popstate', loadCatalog);
   window.addEventListener('scroll', () => closePanels(null), { passive: true });
   window.addEventListener('resize', () => {

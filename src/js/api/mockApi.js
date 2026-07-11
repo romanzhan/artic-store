@@ -537,12 +537,12 @@ export const mockApi = {
     if (gender && !group) title = `${adj.catalog} каталог`;
     if (gender && group) title = `${GROUP_PLURAL[group] ? adj.plural : adj.singular} ${groupLabel.toLowerCase()}`;
     if (category) title = subLabel;
-    if (sale) title = 'Скидки';
+    if (sale) title = 'Акции';
     if (brandLink) title = brandLink;
 
     const breadcrumbs = [{ label: 'Главная', href: '/' }];
     if (sale) {
-      breadcrumbs.push({ label: 'Скидки', href: catalogPath({ sale: true }) });
+      breadcrumbs.push({ label: 'Акции', href: catalogPath({ sale: true }) });
       if (brandLink) breadcrumbs.push({ label: brandLink });
     } else {
       breadcrumbs.push({ label: 'Каталог', href: catalogPath() });

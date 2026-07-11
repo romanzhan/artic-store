@@ -8,12 +8,6 @@
   gap: var(--space-12);
   max-width: var(--cta-actions-w);
 
-  .btn {
-    width: 100%;
-    justify-content: center;
-    padding-block: var(--space-12);
-  }
-
   &__short {
     display: none;
   }

@@ -56,8 +56,8 @@ const views = {
       ${field('<input class="auth__input" type="password" placeholder="Пароль" data-name="password" autocomplete="current-password" />')}
       <button class="auth__link auth__forgot" type="button" data-auth-view="recovery">Забыли пароль?</button>
       <div class="auth__actions">
-        <button class="btn btn--filled auth__submit" type="submit">Войти</button>
-        <button class="btn btn--primary btn--ghost-dark auth__submit" type="button" data-auth-view="register">
+        <button class="btn btn--filled btn--cta" type="submit">Войти</button>
+        <button class="btn btn--primary btn--ghost-dark btn--cta" type="button" data-auth-view="register">
           <span>Зарегистрироваться</span>
           <svg class="icon btn__icon" aria-hidden="true"><use href="#icon-arrow-circle"></use></svg>
         </button>
@@ -73,7 +73,7 @@ const views = {
       ${field('<input class="auth__input" type="password" placeholder="Пароль" data-name="password" autocomplete="new-password" />')}
       ${renderCheck({ modifier: ' check--top auth__consent', attrs: 'data-auth-consent', label: `Я даю <a class="auth__link" href="${BASE}privacy" target="_blank" rel="noopener">согласие</a> на обработку своих персональных данных в соответствии с <a class="auth__link" href="${BASE}privacy" target="_blank" rel="noopener">политикой обработки персональных данных</a>` })}
       <div class="auth__actions">
-        <button class="btn btn--filled auth__submit" type="submit">Зарегистрироваться</button>
+        <button class="btn btn--filled btn--cta" type="submit">Зарегистрироваться</button>
       </div>
     </form>`,
 
@@ -82,7 +82,7 @@ const views = {
       <p class="auth__text">На вашу электронную почту мы отправим ссылку для восстановления пароля. Если письмо не пришло, посмотрите в папке «Спам». Либо попробуйте восстановить пароль заново.</p>
       ${field('<input class="auth__input" type="email" placeholder="Email" data-name="email" autocomplete="email" />')}
       <div class="auth__actions">
-        <button class="btn btn--filled auth__submit" type="submit">Отправить</button>
+        <button class="btn btn--filled btn--cta" type="submit">Отправить</button>
       </div>
     </form>`,
 
@@ -92,7 +92,7 @@ const views = {
       ${field('<input class="auth__input" type="text" inputmode="numeric" placeholder="Код из письма" data-name="code" autocomplete="one-time-code" />')}
       <button class="auth__link auth__resend" type="button" data-auth-resend>Запросить код повторно</button>
       <div class="auth__actions">
-        <button class="btn btn--filled auth__submit" type="submit">Отправить</button>
+        <button class="btn btn--filled btn--cta" type="submit">Отправить</button>
       </div>
     </form>`,
 
@@ -102,7 +102,7 @@ const views = {
       ${field('<input class="auth__input" type="password" placeholder="Пароль" data-name="password" autocomplete="new-password" />')}
       ${field('<input class="auth__input" type="password" placeholder="Повторите пароль" data-name="repeat" autocomplete="new-password" />')}
       <div class="auth__actions">
-        <button class="btn btn--filled auth__submit" type="submit">Изменить</button>
+        <button class="btn btn--filled btn--cta" type="submit">Изменить</button>
       </div>
     </form>`,
 };

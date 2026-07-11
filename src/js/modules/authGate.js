@@ -9,8 +9,8 @@ const content = () => `
   <h2 class="modal__title">Больше выгоды</h2>
   <p class="modal__text">Зарегистрированным и авторизованным покупателям удобно следить за их заказами, а также у них есть доступ к персональным промокодам</p>
   <div class="modal__actions">
-    <button class="btn btn--filled modal__btn" type="button" data-auth-login>Войти / Зарегистрироваться</button>
-    <button class="btn btn--primary btn--ghost-dark modal__btn" type="button" data-auth-guest>
+    <button class="btn btn--filled btn--cta modal__btn" type="button" data-auth-login>Войти / Зарегистрироваться</button>
+    <button class="btn btn--primary btn--ghost-dark btn--cta modal__btn" type="button" data-auth-guest>
       <span>Оформить как гость</span>
       <svg class="icon btn__icon" aria-hidden="true"><use href="#icon-arrow-circle"></use></svg>
     </button>

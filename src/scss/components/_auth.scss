@@ -228,14 +228,6 @@
     margin-block-start: auto;
   }
 
-  &__submit {
-    width: 100%;
-    justify-content: center;
-    padding-block: var(--space-12);
-    font-size: var(--fs-16);
-    border-width: 2px;
-  }
-
   @include respond-to('mobile') {
     --auth-h: auto;
 
