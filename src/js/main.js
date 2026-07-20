@@ -1,24 +1,14 @@
-import '@fontsource/inter/latin-300.css';
-import '@fontsource/inter/latin-400.css';
-import '@fontsource/inter/latin-500.css';
-import '@fontsource/inter/latin-600.css';
-import '@fontsource/inter/latin-700.css';
-import '@fontsource/inter/latin-900.css';
-import '@fontsource/inter/cyrillic-300.css';
-import '@fontsource/inter/cyrillic-400.css';
-import '@fontsource/inter/cyrillic-500.css';
-import '@fontsource/inter/cyrillic-600.css';
-import '@fontsource/inter/cyrillic-700.css';
-import '@fontsource/inter/cyrillic-900.css';
-import '@fontsource/noto-sans/latin-400.css';
-import '@fontsource/noto-sans/latin-500.css';
-import '@fontsource/noto-sans/latin-700.css';
-import '@fontsource/noto-sans/latin-900.css';
-import '@fontsource/noto-sans/cyrillic-400.css';
-import '@fontsource/noto-sans/cyrillic-500.css';
-import '@fontsource/noto-sans/cyrillic-700.css';
-import '@fontsource/noto-sans/cyrillic-900.css';
-
+import '@fontsource/montserrat/latin-400.css';
+import '@fontsource/montserrat/latin-ext-400.css';
+import '@fontsource/montserrat/latin-500.css';
+import '@fontsource/montserrat/latin-600.css';
+import '@fontsource/montserrat/latin-700.css';
+import '@fontsource/montserrat/latin-900.css';
+import '@fontsource/montserrat/cyrillic-400.css';
+import '@fontsource/montserrat/cyrillic-500.css';
+import '@fontsource/montserrat/cyrillic-600.css';
+import '@fontsource/montserrat/cyrillic-700.css';
+import '@fontsource/montserrat/cyrillic-900.css';
 import '../scss/main.scss';
 
 import { initOverlay } from './modules/overlay.js';

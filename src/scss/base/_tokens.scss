@@ -1,8 +1,7 @@
 :root {
-  --font-primary: 'Inter', sans-serif;
-  --font-secondary: 'Noto Sans', sans-serif;
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Bebas Neue', 'Montserrat', sans-serif;
 
-  --fw-light: 300;
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
@@ -17,20 +16,24 @@
   --fs-20: 20px;
   --fs-22: 22px;
   --fs-24: 24px;
+  --fs-28: 28px;
   --fs-40: 40px;
   --fs-120: 120px;
+  --fs-title: clamp(26px, 1.2vw + 22px, 40px);
 
-  --color-accent: #e75f00;
-  --color-accent-hover: #d05600;
-  --color-accent-active: #bd4e00;
+  --color-accent: #9e1b32;
+  --color-accent-hover: #871628;
+  --color-accent-active: #741322;
   --color-success: #00917d;
-  --color-navy: #0a1929;
+  --color-graphite: #2f3740;
+  --color-graphite-hover: #232932;
+  --color-graphite-active: #1a1f26;
   --color-gray: #434343;
   --color-gray-light: #959595;
   --color-black: #000000;
   --color-white: #ffffff;
 
-  --color-text: var(--color-navy);
+  --color-text: var(--color-graphite);
   --color-text-secondary: var(--color-gray);
   --color-text-muted: var(--color-gray-light);
   --color-text-on-accent: var(--color-white);
@@ -52,9 +55,6 @@
   --badge-size: 60px;
   --scrollbar-size: 14px;
   --cart-width: 480px;
-
-  --accent-line-width: 150px;
-  --accent-line-height: 2px;
 
   --btn-icon-w: 28px;
   --btn-icon-h: 18px;

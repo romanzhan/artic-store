@@ -21,12 +21,10 @@
 
   &__title {
     width: fit-content;
-    font-size: var(--fs-22);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-title);
     text-transform: uppercase;
     color: var(--color-text);
-
-    @include title-accent;
   }
 
   &__lead {
@@ -50,12 +48,10 @@
 
   &__subheading {
     width: fit-content;
-    font-size: var(--fs-18);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-22);
     text-transform: uppercase;
     color: var(--color-text);
-
-    @include title-accent;
   }
 
   &__text {

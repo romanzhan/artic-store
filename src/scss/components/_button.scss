@@ -6,7 +6,6 @@
   justify-content: center;
   gap: var(--space-12);
   font-family: var(--font-secondary);
-  font-weight: var(--fw-medium);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -21,14 +20,30 @@
 
 .btn--primary {
   padding: var(--space-12) var(--space-20);
-  font-size: var(--fs-16);
-  color: var(--color-accent);
-  border: 2px solid var(--color-accent);
+  font-size: var(--fs-22);
+  color: var(--color-graphite);
+  border: 1px solid var(--color-graphite);
   border-radius: var(--radius-sm);
 
   &:hover {
     color: var(--color-text-on-accent);
+    background-color: var(--color-graphite);
+  }
+
+  &:active {
+    background-color: var(--color-graphite-active);
+    border-color: var(--color-graphite-active);
+  }
+}
+
+.btn--accent {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+
+  &:hover {
+    color: var(--color-text-on-accent);
     background-color: var(--color-accent);
+    border-color: var(--color-accent);
   }
 
   &:active {
@@ -67,50 +82,50 @@
 .btn--filled-tablet {
   @include respond-to('tablet') {
     color: var(--color-text-on-accent);
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
+    background-color: var(--color-graphite);
+    border-color: var(--color-graphite);
 
     &:hover {
       color: var(--color-text-on-accent);
-      background-color: var(--color-accent-hover);
-      border-color: var(--color-accent-hover);
+      background-color: var(--color-graphite-hover);
+      border-color: var(--color-graphite-hover);
     }
 
     &:active {
-      background-color: var(--color-accent-active);
-      border-color: var(--color-accent-active);
+      background-color: var(--color-graphite-active);
+      border-color: var(--color-graphite-active);
     }
   }
 }
 
 .btn--filled {
   padding: var(--space-8) var(--space-16);
-  font-size: var(--fs-14);
+  font-size: var(--fs-18);
   color: var(--color-text-on-accent);
-  background-color: var(--color-accent);
-  border: 1px solid var(--color-accent);
+  background-color: var(--color-graphite);
+  border: 1px solid var(--color-graphite);
 
   &:hover {
-    background-color: var(--color-text);
-    border-color: var(--color-text);
+    background-color: var(--color-graphite-hover);
+    border-color: var(--color-graphite-hover);
   }
 
   &:active {
-    background-color: var(--color-text);
-    border-color: var(--color-text);
+    background-color: var(--color-graphite-active);
+    border-color: var(--color-graphite-active);
   }
 }
 
 .btn--dark {
   padding: var(--space-8) var(--space-16);
-  font-size: var(--fs-14);
+  font-size: var(--fs-18);
   color: var(--color-text-on-accent);
-  background-color: var(--color-navy);
-  border: 1px solid var(--color-navy);
+  background-color: var(--color-graphite);
+  border: 1px solid var(--color-graphite);
 
   &:hover {
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
+    background-color: var(--color-graphite-hover);
+    border-color: var(--color-graphite-hover);
   }
 }
 
@@ -118,8 +133,7 @@
   width: 100%;
   justify-content: center;
   padding-block: var(--space-12);
-  font-size: var(--fs-16);
-  border-width: 2px;
+  font-size: var(--fs-22);
 }
 
 .btn--icon-lg .btn__icon {
@@ -130,7 +144,7 @@
 .btn--compact-mobile {
   @include respond-to('mobile') {
     padding: var(--space-8) var(--space-16);
-    font-size: var(--fs-14);
+    font-size: var(--fs-18);
 
     .btn__icon {
       width: var(--btn-icon-w-sm);

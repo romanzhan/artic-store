@@ -3,12 +3,10 @@
 .products-slider__title {
   width: fit-content;
   margin-block-end: var(--space-24);
-  font-size: var(--fs-22);
-  font-weight: var(--fw-bold);
+  font-family: var(--font-secondary);
+  font-size: var(--fs-title);
   text-transform: uppercase;
   color: var(--color-text);
-
-  @include title-accent;
 
   @include respond-to('mobile') {
     font-size: var(--fs-16);

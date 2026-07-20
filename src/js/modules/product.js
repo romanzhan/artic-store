@@ -176,9 +176,10 @@ function renderInfo() {
       </button>
     </div>
     <h1 class="product__title">${data.title}</h1>
+    <p class="product__article">Артикул: <span class="product__article-value">${data.article}</span></p>
 
     <div class="product__row">
-      <span class="product__label">Цвет: ${data.variants[activeVariant].color}</span>
+      <span class="product__label">Цвет: <span class="product__label-value">${data.variants[activeVariant].color}</span></span>
       <div class="product__variants">${variants}</div>
     </div>
 
@@ -190,8 +191,6 @@ function renderInfo() {
         <svg class="icon" aria-hidden="true"><use href="#icon-arrow-circle"></use></svg>
       </button>
     </div>
-
-    <div class="product__divider" aria-hidden="true"></div>
 
     ${promo}
 
@@ -225,8 +224,25 @@ function renderDetails() {
 
 const slot = (name, html) => setSlot(root, name, html);
 
+function renderTopbar() {
+  const parent = [...data.breadcrumbs.slice(0, -1)].reverse().find((item) => item.href) ?? { href: '/catalog', label: 'Каталог' };
+  const favActive = favoritesStore.has(data.id) ? ' is-active' : '';
+  return `
+    <div class="product__topbar">
+      <a class="product__back" href="${parent.href}" aria-label="Назад">
+        <svg class="icon icon--flip" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+      </a>
+      <span class="product__topbar-title">${parent.label}</span>
+      <button class="product__fav product__topbar-fav${favActive}" type="button" data-fav aria-label="В избранное">
+        <svg class="icon product__heart product__heart--outline" aria-hidden="true"><use href="#icon-favorite"></use></svg>
+        <svg class="icon product__heart product__heart--fill" aria-hidden="true"><use href="#icon-heart"></use></svg>
+      </button>
+    </div>`;
+}
+
 function render() {
   slot('breadcrumbs', renderBreadcrumbs(data.breadcrumbs));
+  slot('topbar', renderTopbar());
   slot('gallery', renderGallery());
   slot('info', renderInfo());
   slot('details', renderDetails());

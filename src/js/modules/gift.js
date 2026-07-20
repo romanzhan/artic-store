@@ -52,8 +52,6 @@ function renderInfo() {
       <div class="gift__types">${types}</div>
     </div>
 
-    <div class="gift__divider" aria-hidden="true"></div>
-
     ${renderActions()}`;
 }
 

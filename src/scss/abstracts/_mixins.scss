@@ -22,17 +22,6 @@
   margin-inline: auto;
 }
 
-@mixin title-accent($width: 60%) {
-  &::after {
-    content: '';
-    display: block;
-    width: $width;
-    height: var(--accent-line-height);
-    margin-block-start: var(--space-4);
-    background-color: var(--color-accent);
-  }
-}
-
 @mixin visually-hidden {
   position: absolute;
   width: 1px;

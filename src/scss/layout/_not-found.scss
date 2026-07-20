@@ -1,7 +1,6 @@
 @use '../abstracts' as *;
 
 .not-found {
-  --not-found-accent-w: 80px;
   --not-found-text-w: 480px;
 
   &.surface {
@@ -17,20 +16,11 @@
     line-height: 1;
     letter-spacing: -0.02em;
     color: var(--color-text);
-
-    &::after {
-      content: '';
-      display: block;
-      width: var(--not-found-accent-w);
-      height: var(--accent-line-height);
-      margin: var(--space-24) auto 0;
-      background-color: var(--color-accent);
-    }
   }
 
   &__title {
-    font-size: var(--fs-22);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-title);
     text-transform: uppercase;
     color: var(--color-text);
   }

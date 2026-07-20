@@ -88,7 +88,7 @@
     transition: border-color var(--transition-base);
 
     &:focus-within {
-      border-block-end-color: var(--color-accent);
+      border-block-end-color: var(--color-black);
     }
   }
 
@@ -266,8 +266,8 @@
 
     &:focus {
       outline: none;
-      border-block-end-color: var(--color-accent);
-      box-shadow: 0 1px 0 0 var(--color-accent);
+      border-block-end-color: var(--color-black);
+      box-shadow: 0 1px 0 0 var(--color-black);
     }
   }
 
@@ -295,11 +295,12 @@
     transition: color var(--transition-base);
 
     &:hover {
-      color: var(--color-accent);
+      color: var(--color-black);
     }
 
     &--active {
-      color: var(--color-accent);
+      font-weight: var(--fw-semibold);
+      color: var(--color-black);
     }
   }
 }
@@ -315,13 +316,12 @@
   gap: var(--space-8);
   padding: var(--space-8) var(--space-16);
   font-family: var(--font-secondary);
-  font-size: var(--fs-14);
-  font-weight: var(--fw-medium);
+  font-size: var(--fs-16);
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--color-text);
   background-color: transparent;
-  border: 2px solid var(--color-accent);
+  border: 1px solid var(--color-border);
   cursor: pointer;
   transition:
     color var(--transition-base),
@@ -329,7 +329,7 @@
     border-color var(--transition-base);
 
   &:hover {
-    border-color: var(--color-accent-hover);
+    border-color: var(--color-text);
   }
 }
 
@@ -351,7 +351,7 @@
   flex-shrink: 0;
   width: var(--chip-marker);
   height: var(--chip-marker);
-  border: 2px solid var(--color-text);
+  border: 1px solid var(--color-text);
   border-radius: 50%;
   font-size: var(--fs-11);
   font-weight: var(--fw-medium);
@@ -389,7 +389,7 @@
     justify-content: center;
     gap: var(--space-4);
     padding-inline: var(--space-8);
-    font-size: var(--fs-12);
+    font-size: var(--fs-14);
   }
 
   .filter-chip__marker {

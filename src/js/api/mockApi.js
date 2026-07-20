@@ -56,6 +56,12 @@ const ORDERS = [
     status: 'done', discount: 1500, shipping: 0,
     items: [{ id: 12, size: 'L', color: 'Синий', qty: 1 }, { id: 1, size: 46, color: 'Зелёный', qty: 1 }],
   },
+  {
+    id: 256518, date: '12 июня 2026', time: '10:00 - 18:00',
+    delivery: 'Самовывоз', address: 'г. Красноярск, ул. Белинского, 8', payment: 'Онлайн',
+    status: 'cancelled', discount: 0, shipping: 0,
+    items: [{ id: 4, size: 'S', color: 'Чёрный', qty: 1 }],
+  },
 ];
 
 function mulberry32(seed) {
@@ -373,48 +379,39 @@ const MENU = {
 const SLIDES = [
   {
     id: 1,
-    title: 'Верхняя одежда',
-    subtitle: 'Со скидкой по промокоду <strong>ARTIC15</strong>',
-    button: { text: 'К покупкам', href: `${catalogPath({ sale: true })}` },
-    tag: 'Акция',
+    title: 'Parajumpers',
+    subtitle: 'Брендовая одежда, обувь, аксессуары',
+    button: { text: 'К покупкам', href: `${catalogPath({ gender: 'women', group: 'clothes' })}?brand=Parajumpers` },
+    tag: 'Parajumpers',
     bg: 'bg-1',
     image: 'slide-1',
   },
   {
     id: 2,
-    title: 'Большой ассортимент',
-    subtitle: 'Курток Parajumpers в нашем магазине',
-    button: { text: 'Подобрать', href: `${catalogPath({ gender: 'women', group: 'clothes' })}?brand=Parajumpers` },
-    tag: 'Качество на высоте',
+    title: 'Aeronautica Militare',
+    subtitle: 'Итальянский бренд',
+    button: { text: 'Подобрать', href: catalogPath({ gender: 'men', group: 'clothes' }) },
+    tag: 'Aeronautica Militare',
     bg: 'bg-2',
     image: 'slide-2',
   },
   {
     id: 3,
-    title: 'Обувь премиум',
-    subtitle: 'Выбери лучшие кроссовки Premiata',
-    button: { text: 'Подобрать', href: `${catalogPath({ gender: 'women', group: 'shoes' })}?brand=Premiata` },
-    tag: 'Комфорт и движение',
+    title: 'Premiata',
+    subtitle: 'Премиальная обувь',
+    button: { text: 'Выбрать', href: `${catalogPath({ gender: 'women', group: 'shoes' })}?brand=Premiata` },
+    tag: 'Premiata',
     bg: 'bg-3',
     image: 'slide-3',
   },
   {
     id: 4,
-    title: 'Комфорт и стиль',
-    subtitle: 'Премиальные материалы и идеальная посадка',
-    button: { text: 'Выбрать', href: catalogPath({ gender: 'women', group: 'shoes' }) },
-    tag: 'Совершенство в деталях',
+    title: 'Goldbergh',
+    subtitle: 'Лучшая горнолыжная одежда',
+    button: { text: 'Заказать', href: catalogPath({ gender: 'women', group: 'clothes' }) },
+    tag: 'Goldbergh',
     bg: 'bg-4',
     image: 'slide-4',
-  },
-  {
-    id: 5,
-    title: 'Памятка по уходу',
-    subtitle: 'Чтобы вещи радовали долгое время, мы подготовили для Вас чеклист',
-    button: { text: 'К покупкам', href: catalogPath() },
-    tag: 'Забота и уход',
-    bg: 'bg-5',
-    image: 'slide-5',
   },
 ];
 
@@ -442,6 +439,11 @@ const suggestion = (label, sub, gender, group, category) => ({
   category,
   href: catalogPath({ gender, group, category }),
 });
+
+const SEARCH_GROUP_LABELS = {
+  women: { clothes: 'Женская одежда', shoes: 'Женская обувь' },
+  men: { clothes: 'Мужская одежда', shoes: 'Мужская обувь' },
+};
 
 const SEARCH_SUGGESTIONS = [
   suggestion('Кроссовки', 'Женская обувь', 'women', 'shoes', 'sneakers'),
@@ -784,13 +786,35 @@ export const mockApi = {
     await delay(150);
     const q = query.trim().toLowerCase();
     if (!q) return { suggestions: [], products: [] };
-    const suggestions = SEARCH_SUGGESTIONS.filter(
+
+    const brandSuggestions = [];
+    const seen = new Set();
+    for (const p of PRODUCTS) {
+      if (!p.brand.toLowerCase().includes(q)) continue;
+      const key = `${p.brand}|${p.gender}|${p.group}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      brandSuggestions.push({
+        label: p.brand,
+        brand: p.brand,
+        brandMode: 'logo',
+        sub: SEARCH_GROUP_LABELS[p.gender]?.[p.group] ?? TREE[p.gender].groups[p.group].label,
+        gender: p.gender,
+        group: p.group,
+        href: `${catalogPath({ gender: p.gender, group: p.group })}?brand=${encodeURIComponent(p.brand)}`,
+      });
+    }
+    brandSuggestions.sort(
+      (a, b) => a.label.localeCompare(b.label, 'ru') || b.gender.localeCompare(a.gender) || a.group.localeCompare(b.group),
+    );
+
+    const categorySuggestions = SEARCH_SUGGESTIONS.filter(
       (s) => s.label.toLowerCase().includes(q) || s.sub.toLowerCase().includes(q),
     );
     const products = PRODUCTS.filter(
       (p) => p.title.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q),
     );
-    return { suggestions: structuredClone(suggestions), products: structuredClone(products) };
+    return { suggestions: structuredClone([...brandSuggestions, ...categorySuggestions]), products: structuredClone(products) };
   },
 };
 

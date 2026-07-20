@@ -32,12 +32,10 @@
   &__title {
     width: fit-content;
     margin-block-end: var(--space-32);
-    font-size: var(--fs-22);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-title);
     text-transform: uppercase;
     color: var(--color-text);
-
-    @include title-accent;
   }
 
   &__row {
@@ -77,7 +75,7 @@
 
     &.is-active {
       font-weight: var(--fw-bold);
-      border-width: 2px;
+      border-width: 1.5px;
       border-color: var(--color-text);
     }
   }
@@ -112,7 +110,7 @@
     }
 
     &.is-active {
-      border-width: 2px;
+      border-width: 1.5px;
       border-color: var(--color-accent);
     }
   }
@@ -121,13 +119,6 @@
     --icon-size: 24px;
 
     flex-shrink: 0;
-  }
-
-  &__divider {
-    width: var(--accent-line-width);
-    height: var(--accent-line-height);
-    margin-block-end: var(--space-24);
-    background-color: var(--color-accent);
   }
 
   @include respond-to('mobile') {

@@ -41,8 +41,8 @@
   }
 
   &__title {
-    font-size: var(--fs-22);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-28);
     text-transform: uppercase;
     color: var(--color-text);
   }
@@ -94,25 +94,15 @@
   }
 
   &__num {
-    position: relative;
+    font-family: var(--font-secondary);
     font-size: var(--fs-40);
-    font-weight: var(--fw-black);
     line-height: 1;
     color: var(--color-text);
-
-    &::after {
-      content: '';
-      position: absolute;
-      inset-inline: 0;
-      inset-block-end: calc(-1 * var(--space-4));
-      height: var(--accent-line-height);
-      background-color: var(--color-accent);
-    }
   }
 
   &__step-title {
-    font-size: var(--fs-22);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-28);
     text-transform: uppercase;
     color: var(--color-text);
   }
@@ -142,8 +132,8 @@
 
     &:focus {
       outline: none;
-      border-block-end-color: var(--color-accent);
-      box-shadow: 0 1px 0 0 var(--color-accent);
+      border-block-end-color: var(--color-black);
+      box-shadow: 0 1px 0 0 var(--color-black);
     }
   }
 
@@ -233,7 +223,7 @@
   &__edit {
     flex-shrink: 0;
     padding: var(--space-8) var(--space-16);
-    font-size: var(--fs-14);
+    font-size: var(--fs-16);
 
     .btn__icon {
       width: var(--btn-icon-w-sm);
@@ -330,7 +320,7 @@
   }
 
   &.is-active {
-    border-width: 2px;
+    border-width: 1.5px;
     border-color: var(--color-accent);
   }
 
@@ -348,8 +338,8 @@
   }
 
   &__title {
-    font-size: var(--fs-18);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-22);
     text-transform: uppercase;
     color: var(--color-text);
   }
@@ -366,8 +356,7 @@
     padding-block: var(--space-16);
 
     .checkout-card__title {
-      font-size: var(--fs-16);
-      font-weight: var(--fw-medium);
+      font-size: var(--fs-18);
     }
   }
 }
@@ -391,7 +380,7 @@
 
   &.is-active {
     font-weight: var(--fw-bold);
-    border-width: 2px;
+    border-width: 1.5px;
     border-color: var(--color-accent);
   }
 

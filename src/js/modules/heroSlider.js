@@ -19,7 +19,7 @@ function renderSlide(slide) {
         <div class="hero-slider__content">
           <h2 class="hero-slider__title">${slide.title}</h2>
           <p class="hero-slider__subtitle">${slide.subtitle}</p>
-          <a class="btn btn--primary btn--icon-lg btn--compact-mobile btn--filled-mobile hero-slider__btn" href="${slide.button.href}">
+          <a class="btn btn--primary btn--accent btn--icon-lg btn--compact-mobile btn--filled-mobile hero-slider__btn" href="${slide.button.href}">
             <span>${slide.button.text}</span>
             <svg class="icon btn__icon" aria-hidden="true"><use href="#icon-arrow-circle"></use></svg>
           </a>

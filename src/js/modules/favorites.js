@@ -4,8 +4,8 @@ const ACTIVE = 'is-active';
 
 function syncButtons() {
   document.querySelectorAll('[data-product-id]').forEach((card) => {
-    const fav = card.querySelector('[data-fav]');
-    if (fav) fav.classList.toggle(ACTIVE, favoritesStore.has(Number(card.dataset.productId)));
+    const active = favoritesStore.has(Number(card.dataset.productId));
+    card.querySelectorAll('[data-fav]').forEach((fav) => fav.classList.toggle(ACTIVE, active));
   });
 }
 

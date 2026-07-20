@@ -29,15 +29,15 @@
 
     &:focus {
       outline: none;
-      border-block-end-color: var(--color-accent);
-      box-shadow: 0 1px 0 0 var(--color-accent);
+      border-block-end-color: var(--color-black);
+      box-shadow: 0 1px 0 0 var(--color-black);
     }
   }
 
   &__promo-btn {
     flex-shrink: 0;
     padding: var(--space-8) var(--space-16);
-    font-size: var(--fs-14);
+    font-size: var(--fs-18);
 
     .btn__icon {
       width: var(--btn-icon-w-sm);
@@ -65,14 +65,28 @@
     font-size: var(--fs-18);
     color: var(--color-text-secondary);
 
+    span:last-child {
+      font-family: var(--font-secondary);
+      font-size: var(--fs-20);
+      color: var(--color-black);
+    }
+
     &--discount {
       color: var(--color-accent);
+
+      span:last-child {
+        color: var(--color-accent);
+      }
     }
 
     &--total {
       font-size: var(--fs-22);
       font-weight: var(--fw-bold);
       color: var(--color-text);
+
+      span:last-child {
+        font-size: var(--fs-28);
+      }
     }
   }
 

@@ -2,7 +2,6 @@
 
 .catalog {
   --catalog-aside: 200px;
-  --catalog-back: 40px;
 
   &.surface {
     gap: 0;
@@ -31,25 +30,18 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      width: var(--catalog-back);
-      height: var(--catalog-back);
       color: var(--color-text);
       background-color: transparent;
-      border: 1px solid var(--color-border);
-      border-radius: 50%;
+      border: none;
       cursor: pointer;
-      transition:
-        color var(--transition-base),
-        border-color var(--transition-base);
+      transition: color var(--transition-base);
 
       .icon {
-        --icon-size: 20px;
+        --icon-size: 24px;
       }
 
       &:hover {
         color: var(--color-accent);
-        border-color: var(--color-accent);
-        box-shadow: inset 0 0 0 1px var(--color-accent);
       }
     }
   }
@@ -57,12 +49,10 @@
   &__title {
     width: fit-content;
     margin-inline-end: auto;
-    font-size: var(--fs-22);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-title);
     text-transform: uppercase;
     color: var(--color-text);
-
-    @include title-accent;
   }
 
   &__body {
@@ -120,8 +110,8 @@
   }
 
   &__gender {
-    font-size: var(--fs-18);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-22);
     text-transform: uppercase;
     color: var(--color-text);
     transition: color var(--transition-base);

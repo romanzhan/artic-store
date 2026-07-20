@@ -17,7 +17,7 @@
     inset-inline: 0;
     inset-block-end: 0;
     z-index: var(--z-dropdown);
-    flex-direction: row;
+    gap: var(--space-8);
     max-width: none;
     padding-block: var(--space-12);
     padding-block-end: calc(var(--space-12) + env(safe-area-inset-bottom));
@@ -27,19 +27,8 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 
-    &::before {
-      content: '';
-      position: absolute;
-      inset-block-start: 0;
-      inset-inline-start: 0;
-      width: 50%;
-      height: var(--accent-line-height);
-      background-color: var(--color-accent);
-    }
-
     .btn {
-      flex: 1;
-      width: auto;
+      width: 100%;
       font-size: var(--fs-14);
     }
 
@@ -59,6 +48,6 @@
 
 @include respond-to('mobile') {
   body:has(.cta-actions) {
-    padding-block-end: calc(var(--space-80) + env(safe-area-inset-bottom));
+    padding-block-end: calc(var(--space-80) + var(--space-48) + env(safe-area-inset-bottom));
   }
 }

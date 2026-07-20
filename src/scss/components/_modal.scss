@@ -44,12 +44,10 @@
   &__title {
     width: fit-content;
     margin-block-end: var(--space-20);
-    font-size: var(--fs-22);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-28);
     text-transform: uppercase;
     color: var(--color-text);
-
-    @include title-accent(60px);
   }
 
   &__text {

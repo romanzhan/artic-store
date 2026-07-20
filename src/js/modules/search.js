@@ -1,5 +1,6 @@
 import mockApi from '../api/mockApi.js';
 import { renderProductCard } from '../components/productCard.js';
+import { renderBrand } from '../utils/productAssets.js';
 import { showOverlay, hideOverlay } from './overlay.js';
 import { createFocusTrap } from '../utils/focusTrap.js';
 import { EVENTS, LAYERS } from '../constants.js';
@@ -25,14 +26,22 @@ const setTriggersExpanded = (expanded) => {
   document.querySelectorAll('[data-search]').forEach((t) => t.setAttribute('aria-expanded', String(expanded)));
 };
 
-const renderSuggestion = (s) => `
-  <a class="search__suggestion" href="${s.href}" data-category="${s.category}" data-gender="${s.gender}">
+const renderSuggestion = (s) => {
+  const title = s.brand
+    ? renderBrand({ brand: s.brand, brandMode: s.brandMode }, 'search')
+    : `<span class="search__suggestion-label">${s.label}</span>`;
+  const match = s.brand
+    ? `data-brand="${s.brand}" data-group="${s.group}" data-gender="${s.gender}"`
+    : `data-category="${s.category}" data-gender="${s.gender}"`;
+  return `
+  <a class="search__suggestion" href="${s.href}" ${match}>
     <span class="search__suggestion-text">
-      <span class="search__suggestion-label">${s.label}</span>
+      ${title}
       <span class="search__suggestion-sub">${s.sub}</span>
     </span>
     <svg class="icon search__suggestion-arrow" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
   </a>`;
+};
 
 const productsHtml = (products) => products.slice(0, PRODUCTS_LIMIT).map(renderProductCard).join('');
 
@@ -106,12 +115,14 @@ function onModalClick(event) {
 }
 
 function onResultsOver(event) {
-  const suggestion = event.target.closest('[data-category]');
+  const suggestion = event.target.closest('[data-gender]');
   if (!suggestion || !currentData) return;
-  const { category, gender } = suggestion.dataset;
-  const key = `${category}|${gender}`;
+  const { category, gender, brand, group } = suggestion.dataset;
+  const key = `${brand ?? category}|${gender}|${group ?? ''}`;
   if (key === activeMatch) return;
-  const filtered = currentData.products.filter((p) => p.gender === gender && p.category === category);
+  const filtered = brand
+    ? currentData.products.filter((p) => p.brand === brand && p.gender === gender && p.group === group)
+    : currentData.products.filter((p) => p.gender === gender && p.category === category);
   if (filtered.length) {
     activeMatch = key;
     setProducts(filtered);

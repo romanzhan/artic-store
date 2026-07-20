@@ -43,22 +43,13 @@
   }
 
   &__badge {
-    position: absolute;
-    inset-block-end: 0;
-    inset-inline-start: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--badge-size);
-    height: var(--badge-size);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 1.1;
+    flex-shrink: 0;
+    margin-inline-start: auto;
     font-family: var(--font-primary);
-    font-size: var(--fs-11);
+    font-size: var(--fs-12);
     font-weight: var(--fw-medium);
-    color: var(--color-white);
-    background-color: var(--color-navy);
+    text-transform: uppercase;
+    color: var(--color-text);
   }
 
   &__info {
@@ -68,6 +59,13 @@
     flex-direction: column;
     gap: var(--space-4);
     padding-block-start: var(--space-12);
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    min-height: var(--card-brand-logo-h);
   }
 
   &__brand-logo {
@@ -88,18 +86,17 @@
   &__fav {
     position: absolute;
     inset-block-start: var(--space-12);
-    inset-inline-end: 0;
+    inset-inline-end: var(--space-12);
+    z-index: var(--card-z-hover);
     --icon-size: 24px;
     display: inline-flex;
-    color: var(--color-gray);
-    transition: color var(--transition-base);
+    color: var(--color-graphite);
+    opacity: 0.75;
+    transition: opacity var(--transition-base);
 
-    &:hover {
-      color: var(--color-navy);
-    }
-
+    &:hover,
     &.is-active {
-      color: var(--color-navy);
+      opacity: 1;
     }
   }
 
@@ -116,10 +113,9 @@
   }
 
   &__title {
-    padding-inline-end: var(--space-32);
     font-family: var(--font-primary);
     font-size: var(--fs-16);
-    font-weight: var(--fw-light);
+    font-weight: var(--fw-regular);
     color: var(--color-text);
     transition: color var(--transition-base);
 
@@ -132,24 +128,18 @@
     display: flex;
     align-items: baseline;
     gap: var(--space-8);
-    font-size: var(--fs-16);
-    font-weight: var(--fw-regular);
-    color: var(--color-text);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-20);
+    color: var(--color-black);
   }
 
   &__price-old {
-    color: var(--color-text);
-    font-weight: var(--fw-light);
+    font-size: var(--fs-16);
+    color: var(--color-text-muted);
     text-decoration: line-through;
   }
 
   &__price-new {
-    color: var(--color-text);
-  }
-}
-
-@include respond-to('mobile') {
-  .product-card {
-    --badge-size: 56px;
+    color: var(--color-black);
   }
 }

@@ -45,8 +45,7 @@
 
   &__title {
     font-family: var(--font-secondary);
-    font-size: var(--fs-18);
-    font-weight: var(--fw-bold);
+    font-size: var(--fs-22);
     text-transform: uppercase;
     color: var(--color-text);
   }
@@ -82,11 +81,10 @@
     width: 100%;
     padding-block: var(--space-16);
     font-family: var(--font-secondary);
-    font-size: var(--fs-16);
+    font-size: var(--fs-18);
     text-align: start;
     color: var(--color-text);
     background-color: transparent;
-    border-bottom: 1.2px solid var(--color-accent);
     transition: color var(--transition-base);
 
     &:hover {
@@ -107,8 +105,7 @@
 
   &__subtitle {
     font-family: var(--font-secondary);
-    font-size: var(--fs-16);
-    font-weight: var(--fw-bold);
+    font-size: var(--fs-18);
     color: var(--color-text);
     transition: color var(--transition-base);
 

@@ -25,7 +25,7 @@
   }
 
   &.is-active {
-    border-width: 2px;
+    border-width: 1.5px;
     border-color: var(--color-accent);
   }
 
@@ -36,8 +36,8 @@
   }
 
   &__name {
-    font-size: var(--fs-18);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-22);
     text-transform: uppercase;
     color: var(--color-text);
   }

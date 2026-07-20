@@ -1,12 +1,5 @@
 @use '../abstracts' as *;
 
-.promo__accent {
-  display: block;
-  width: var(--accent-line-width);
-  height: var(--accent-line-height);
-  background-color: var(--color-accent);
-}
-
 .promo__inner {
   display: grid;
   grid-template-columns: 2fr 3fr;
@@ -21,8 +14,8 @@
 }
 
 .promo__title {
+  font-family: var(--font-secondary);
   font-size: var(--fs-40);
-  font-weight: var(--fw-bold);
   text-transform: uppercase;
   color: var(--color-text);
 }
@@ -51,10 +44,6 @@
 }
 
 @include respond-to('mobile') {
-  .promo__accent {
-    margin-block-end: var(--space-16);
-  }
-
   .promo__title {
     font-size: var(--fs-24);
   }

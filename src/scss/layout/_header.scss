@@ -1,7 +1,8 @@
 @use '../abstracts' as *;
 
 .header {
-  position: relative;
+  position: sticky;
+  inset-block-start: 0;
   z-index: var(--z-header);
   padding-block-start: env(safe-area-inset-top);
   background-color: var(--color-bg);
@@ -36,8 +37,7 @@
 
   &__nav-link {
     font-family: var(--font-secondary);
-    font-size: var(--fs-18);
-    font-weight: var(--fw-medium);
+    font-size: var(--fs-20);
     color: var(--color-text);
     white-space: nowrap;
     transition: color var(--transition-base);
@@ -47,7 +47,7 @@
     }
 
     &--active {
-      outline: 2px solid var(--color-accent);
+      outline: 1.5px solid var(--color-accent);
       outline-offset: 6px;
     }
   }
@@ -61,11 +61,14 @@
 
   &__action {
     display: inline-flex;
-    color: var(--color-gray);
-    transition: color var(--transition-base);
+    color: var(--color-graphite);
+    opacity: 0.75;
+    transition:
+      color var(--transition-base),
+      opacity var(--transition-base);
 
     &:hover {
-      color: var(--color-accent);
+      opacity: 1;
     }
 
     &--cart,
@@ -75,14 +78,15 @@
 
     &--account.is-active {
       color: var(--color-accent);
+      opacity: 1;
     }
   }
 
   &__counter {
     --counter-size: 18px;
     position: absolute;
-    inset-block-start: var(--space-16);
-    inset-inline-end: var(--space-16);
+    inset-block-start: calc(-1 * var(--space-8));
+    inset-inline-end: calc(-1 * var(--space-8));
     min-width: var(--counter-size);
     height: var(--counter-size);
     padding-inline: var(--space-4);
@@ -106,11 +110,11 @@
     &__inner {
       grid-template-columns: auto auto 1fr auto auto;
       gap: var(--space-16);
-      padding-block: var(--space-24) var(--space-12);
+      padding-block: var(--space-20);
     }
 
     &__action {
-      --icon-size: 24px;
+      --icon-size: 20px;
     }
 
     &__burger {
@@ -120,7 +124,7 @@
     }
 
     &__logo {
-      --logo-width: 140px;
+      --logo-width: 152px;
       grid-row: 1;
       grid-column: 3;
       justify-self: center;
@@ -144,13 +148,13 @@
     }
 
     &__action--cart {
-      --icon-size: 28px;
+      --icon-size: 22px;
       grid-row: 1;
       grid-column: 4;
     }
 
     &__action--account {
-      --icon-size: 28px;
+      --icon-size: 22px;
       grid-row: 1;
       grid-column: 5;
     }

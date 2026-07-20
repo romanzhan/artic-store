@@ -87,8 +87,8 @@
 }
 
 .footer__phone {
-  font-size: var(--fs-20);
-  font-weight: var(--fw-bold);
+  font-family: var(--font-secondary);
+  font-size: var(--fs-24);
   color: var(--color-text);
   transition: color var(--transition-base);
 
@@ -132,17 +132,6 @@
 @include respond-to('mobile') {
   .footer::before {
     background-color: var(--color-bg);
-  }
-
-  .footer::after {
-    content: '';
-    position: absolute;
-    z-index: var(--footer-z-fore);
-    inset-block-start: var(--space-24);
-    inset-inline-start: var(--container-gutter);
-    width: var(--accent-line-width);
-    height: var(--accent-line-height);
-    background-color: var(--color-accent);
   }
 
   .footer__logo {

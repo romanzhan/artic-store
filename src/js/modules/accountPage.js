@@ -11,6 +11,7 @@ import { escapeHtml } from '../utils/dom.js';
 const ORDER_STATUS = {
   created: { label: 'Создан', mod: 'created' },
   done: { label: 'Выполнен', mod: 'done' },
+  cancelled: { label: 'Отменен', mod: 'cancelled' },
 };
 
 const SECTIONS = [
