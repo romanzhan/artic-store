@@ -116,12 +116,15 @@ function openCatalog(gender) {
 }
 
 function show() {
+  const wasOpen = isOpen;
   isOpen = true;
   panel.classList.add(CLASS_OPEN);
   panel.setAttribute('aria-hidden', 'false');
   setBurgerExpanded(true);
-  lockScroll();
-  trap.activate();
+  if (!wasOpen) {
+    lockScroll();
+    trap.activate();
+  }
 }
 
 function close() {

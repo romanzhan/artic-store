@@ -1,7 +1,7 @@
 import http, { API_URL } from './http.js';
 
 const USERS_KEY = 'artic:users';
-const SESSION_KEY = 'artic:user';
+export const SESSION_KEY = 'artic:user';
 const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function readUsers() {
@@ -134,5 +134,9 @@ const real = {
     return (await http.put('/user/profile', patch)).data;
   },
 };
+
+if (!API_URL) {
+  console.warn('[Artic Store] VITE_API_URL не задан — авторизация работает в мок-режиме поверх localStorage.');
+}
 
 export default API_URL ? real : mock;

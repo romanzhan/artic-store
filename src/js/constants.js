@@ -1,6 +1,7 @@
 export const EVENTS = {
   layerOpen: 'layer:open',
   overlayClick: 'overlay:click',
+  cartOpen: 'cart:open',
   checkoutStart: 'checkout:start',
   checkoutClose: 'checkout:close',
   checkoutAddress: 'checkout:address',

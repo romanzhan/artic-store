@@ -3,10 +3,10 @@ import { formatPrice } from '../utils/productAssets.js';
 import { renderBreadcrumbs } from '../utils/breadcrumbs.js';
 import { setSlot } from '../utils/dom.js';
 import { renderActions } from '../components/ctaActions.js';
-import { EVENTS } from '../constants.js';
 import mockApi from '../api/mockApi.js';
 import cartStore from './cartStore.js';
 import { setBuyNow } from './orderSummary.js';
+import { startCheckout } from './authGate.js';
 import { showCartToast } from './cartToast.js';
 
 const imageUrl = createAssetResolver(
@@ -84,7 +84,7 @@ function onClick(event) {
   }
   if (event.target.closest('[data-buy-now]')) {
     setBuyNow(buildLine().line);
-    document.dispatchEvent(new CustomEvent(EVENTS.checkoutStart));
+    startCheckout();
   }
 }
 

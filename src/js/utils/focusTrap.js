@@ -1,6 +1,8 @@
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
+const stack = [];
+
 export function createFocusTrap(container) {
   let active = false;
   let restore = null;
@@ -11,7 +13,7 @@ export function createFocusTrap(container) {
     );
 
   function onKeydown(event) {
-    if (event.key !== 'Tab') return;
+    if (event.key !== 'Tab' || stack[stack.length - 1] !== onKeydown) return;
     const items = visible();
     if (!items.length) return;
     const first = items[0];
@@ -33,7 +35,8 @@ export function createFocusTrap(container) {
       if (active) return;
       active = true;
       restore = document.activeElement;
-      container.addEventListener('keydown', onKeydown);
+      stack.push(onKeydown);
+      document.addEventListener('keydown', onKeydown);
       const focusInitial = () => {
         if (!active) return;
         if (getComputedStyle(container).visibility === 'hidden') {
@@ -47,7 +50,9 @@ export function createFocusTrap(container) {
     release() {
       if (!active) return;
       active = false;
-      container.removeEventListener('keydown', onKeydown);
+      const index = stack.indexOf(onKeydown);
+      if (index >= 0) stack.splice(index, 1);
+      document.removeEventListener('keydown', onKeydown);
       restore?.focus?.();
       restore = null;
     },

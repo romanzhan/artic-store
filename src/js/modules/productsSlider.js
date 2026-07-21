@@ -22,7 +22,7 @@ function render(root, title, products) {
 function createSwiper(root) {
   new Swiper(root.querySelector('.products-slider__swiper'), {
     modules: [Navigation, A11y],
-    slidesPerView: 2.2,
+    slidesPerView: 1.5,
     spaceBetween: 16,
     slidesOffsetBefore: 16,
     slidesOffsetAfter: 16,

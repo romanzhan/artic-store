@@ -138,8 +138,9 @@
   }
 
   &__group {
-    font-size: var(--fs-16);
-    font-weight: var(--fw-semibold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-20);
+    text-transform: uppercase;
     color: var(--color-text);
     transition: color var(--transition-base);
 
@@ -175,7 +176,6 @@
     flex-direction: column;
     gap: var(--space-8);
     margin-block-start: var(--space-8);
-    padding-inline-start: var(--space-12);
   }
 
   &__sublink {

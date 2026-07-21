@@ -72,10 +72,10 @@
     }
 
     &--discount {
-      color: var(--color-accent);
+      color: var(--color-text-secondary);
 
       span:last-child {
-        color: var(--color-accent);
+        color: var(--color-text);
       }
     }
 

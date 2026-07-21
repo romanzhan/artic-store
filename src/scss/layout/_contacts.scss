@@ -174,8 +174,9 @@
   &__line-main {
     grid-row: 1;
     grid-column: 2;
-    font-size: var(--fs-18);
-    font-weight: var(--fw-semibold);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-22);
+    text-transform: uppercase;
   }
 
   &__line-sub {
@@ -206,7 +207,7 @@
     --icon-size: 28px;
 
     display: inline-flex;
-    color: var(--color-gray);
+    color: var(--color-graphite);
     transition: color var(--transition-base);
 
     &:hover {

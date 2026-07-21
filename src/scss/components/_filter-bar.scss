@@ -344,6 +344,11 @@
   text-overflow: ellipsis;
 }
 
+.filter--price .filter-chip__label {
+  overflow: visible;
+  text-overflow: clip;
+}
+
 .filter-chip__marker {
   display: inline-flex;
   align-items: center;
@@ -383,6 +388,10 @@
   .filter-bar__filters > .filter {
     flex: 1;
     min-width: 0;
+  }
+
+  .filter-bar__filters > .filter--price {
+    flex: 0 0 auto;
   }
 
   .filter-chip {

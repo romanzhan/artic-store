@@ -3,6 +3,7 @@ import { renderProductCard } from '../components/productCard.js';
 import { renderBrand } from '../utils/productAssets.js';
 import { showOverlay, hideOverlay } from './overlay.js';
 import { createFocusTrap } from '../utils/focusTrap.js';
+import { escapeHtml } from '../utils/dom.js';
 import { EVENTS, LAYERS } from '../constants.js';
 
 const CLASS_OPEN = 'is-open';
@@ -29,7 +30,7 @@ const setTriggersExpanded = (expanded) => {
 const renderSuggestion = (s) => {
   const title = s.brand
     ? renderBrand({ brand: s.brand, brandMode: s.brandMode }, 'search')
-    : `<span class="search__suggestion-label">${s.label}</span>`;
+    : `<span class="search__suggestion-label">${escapeHtml(s.label)}</span>`;
   const match = s.brand
     ? `data-brand="${s.brand}" data-group="${s.group}" data-gender="${s.gender}"`
     : `data-category="${s.category}" data-gender="${s.gender}"`;
@@ -37,7 +38,7 @@ const renderSuggestion = (s) => {
   <a class="search__suggestion" href="${s.href}" ${match}>
     <span class="search__suggestion-text">
       ${title}
-      <span class="search__suggestion-sub">${s.sub}</span>
+      <span class="search__suggestion-sub">${escapeHtml(s.sub)}</span>
     </span>
     <svg class="icon search__suggestion-arrow" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
   </a>`;

@@ -1,7 +1,9 @@
 import authApi from '../api/authApi.js';
 import authStore from './authStore.js';
 import favoritesStore from './favoritesStore.js';
+import cartStore from './cartStore.js';
 import mockApi from '../api/mockApi.js';
+import { EVENTS } from '../constants.js';
 import { renderProductCard } from '../components/productCard.js';
 import { renderCheck } from '../components/check.js';
 import { imageUrl, formatPrice } from '../utils/productAssets.js';
@@ -125,20 +127,25 @@ function renderOrderCard(order) {
     .join('');
   return `
     <a class="order-card" href="/account/orders/${order.id}">
-      <div class="order-card__main">
-        <h2 class="order-card__num">Заказ № ${order.id}</h2>
-        <p class="order-card__date">
-          <svg class="icon order-card__icon" aria-hidden="true"><use href="#icon-date"></use></svg>
-          ${escapeHtml(order.date)}
-        </p>
-        <p class="order-card__delivery"><b>${escapeHtml(order.delivery)}</b> ${escapeHtml(order.address)}</p>
-        ${statusBadge(status)}
+      <div class="order-card__top">
+        <div class="order-card__head">
+          <h2 class="order-card__num">Заказ ${order.id}</h2>
+          <p class="order-card__date">
+            <svg class="icon order-card__icon" aria-hidden="true"><use href="#icon-date"></use></svg>
+            ${escapeHtml(order.date)}
+          </p>
+        </div>
+        <div class="order-card__sum">
+          <span class="order-card__sum-label">Сумма</span>
+          <span class="order-card__sum-value">${formatPrice(order.total)}</span>
+        </div>
       </div>
-      <div class="order-card__sum">
-        <span class="order-card__sum-label">Сумма</span>
-        <span class="order-card__sum-value">${formatPrice(order.total)}</span>
-      </div>
+      <p class="order-card__delivery">
+        <span><b>${escapeHtml(order.delivery)}</b> ${escapeHtml(order.address)}</span>
+        <svg class="icon order-card__arrow" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+      </p>
       <div class="order-card__thumbs">${thumbs}</div>
+      ${statusBadge(status)}
     </a>`;
 }
 
@@ -225,13 +232,13 @@ function renderOrderItem(item) {
   const price = item.oldPrice
     ? `<span class="order-item__price-old">${formatPrice(item.oldPrice)}</span><span class="order-item__price-new">${formatPrice(item.price)}</span>`
     : `<span class="order-item__price-new">${formatPrice(item.price)}</span>`;
-  const meta = `${item.qty > 1 ? `<b>x ${item.qty}</b> | ` : ''}${item.size} | ${item.color}`;
+  const meta = `${item.qty > 1 ? `<b>x ${item.qty}</b> | ` : ''}${escapeHtml(`${item.size} | ${item.color}`)}`;
   return `
     <article class="order-item" data-product-id="${item.id}">
-      <span class="order-item__media"><img src="${imageUrl(item.image)}" alt="${item.title}" loading="lazy" /></span>
+      <span class="order-item__media"><img src="${imageUrl(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy" /></span>
       <div class="order-item__body">
-        <span class="order-item__brand">${item.brand}</span>
-        <a class="order-item__title" href="/product/${item.id}">${item.title}</a>
+        <span class="order-item__brand">${escapeHtml(item.brand)}</span>
+        <a class="order-item__title" href="/product/${item.id}">${escapeHtml(item.title)}</a>
         <span class="order-item__meta">${meta}</span>
       </div>
       <button class="order-item__fav${favClass}" type="button" data-fav aria-label="В избранное">
@@ -251,7 +258,7 @@ function renderOrderDetail(order) {
       </a>
       <div class="order-detail__body">
         <div class="order-detail__head">
-          <h1 class="order-detail__num">Заказ № ${order.id}</h1>
+          <h1 class="order-detail__num">Заказ ${order.id}</h1>
           ${statusBadge(status)}
         </div>
         <p class="order-detail__date">
@@ -300,6 +307,24 @@ function render() {
     </div>`;
 }
 
+function repeatOrder(order) {
+  order.items.forEach((item) => {
+    const line = {
+      key: `${item.id}:${item.size}:0`,
+      productId: item.id,
+      image: item.image,
+      brand: item.brand,
+      title: item.title,
+      meta: `${item.size} | ${item.color}`,
+      price: item.price,
+      oldPrice: item.oldPrice,
+      href: `/product/${item.id}`,
+    };
+    for (let i = 0; i < item.qty; i += 1) cartStore.add(line);
+  });
+  document.dispatchEvent(new CustomEvent(EVENTS.cartOpen));
+}
+
 async function saveProfile(form) {
   const consent = form.querySelector('[data-consent]');
   consent.closest('.check').classList.toggle('is-invalid', !consent.checked);
@@ -346,6 +371,12 @@ export async function initAccountPage() {
       go('/');
       return;
     }
+    const repeat = event.target.closest('[data-order-repeat]');
+    if (repeat) {
+      const order = mockApi.getOrders().find((entry) => entry.id === Number(repeat.dataset.orderRepeat));
+      if (order) repeatOrder(order);
+      return;
+    }
     const gender = event.target.closest('[data-gender]');
     if (gender) {
       root.querySelectorAll('[data-gender]').forEach((button) => button.classList.toggle('is-active', button === gender));
@@ -363,5 +394,9 @@ export async function initAccountPage() {
   favoritesStore.subscribe(() => {
     const active = activeSection();
     if (active === 'favorites' || active === 'home') render();
+  });
+
+  authStore.subscribe(() => {
+    if (!authStore.isAuthed()) go('/');
   });
 }

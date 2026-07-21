@@ -143,3 +143,23 @@
     color: var(--color-black);
   }
 }
+
+@include respond-to('mobile') {
+  .product-card__media {
+    aspect-ratio: 2 / 3;
+  }
+
+  .product-card__fav {
+    --icon-size: 18px;
+    inset-block-start: var(--space-8);
+    inset-inline-end: var(--space-8);
+  }
+
+  .product-card__badge {
+    font-size: var(--fs-16);
+  }
+
+  .product-card__price {
+    font-size: var(--fs-16);
+  }
+}

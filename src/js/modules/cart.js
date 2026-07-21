@@ -48,7 +48,7 @@ function renderItem(line) {
   return `
     <article class="cart-item"${isProduct ? ` data-product-id="${line.productId}"` : ''}>
       <a class="cart-item__media" href="${escapeHtml(line.href)}">
-        <img class="cart-item__img" src="${resolveCartImage(line.image)}" alt="${escapeHtml(line.title)}" loading="lazy" />
+        <img class="cart-item__img" src="${escapeHtml(resolveCartImage(line.image))}" alt="${escapeHtml(line.title)}" loading="lazy" />
       </a>
       <div class="cart-item__body">
         <div class="cart-item__head">
@@ -59,18 +59,18 @@ function renderItem(line) {
           </div>
           <div class="cart-item__tools">
             ${fav}
-            <button class="cart-item__remove" type="button" data-cart-remove="${line.key}" aria-label="Удалить">
+            <button class="cart-item__remove" type="button" data-cart-remove="${escapeHtml(line.key)}" aria-label="Удалить">
               <svg class="icon cart-item__remove-icon" aria-hidden="true"><use href="#icon-trash"></use></svg>
             </button>
           </div>
         </div>
         <div class="cart-item__foot">
           <div class="cart-item__qty">
-            <button class="cart-item__step" type="button" data-cart-dec="${line.key}" aria-label="Уменьшить">
+            <button class="cart-item__step" type="button" data-cart-dec="${escapeHtml(line.key)}" aria-label="Уменьшить">
               <svg class="icon cart-item__step-icon" aria-hidden="true"><use href="#icon-qty-minus"></use></svg>
             </button>
             <span class="cart-item__count">${line.qty}</span>
-            <button class="cart-item__step" type="button" data-cart-inc="${line.key}" aria-label="Увеличить">
+            <button class="cart-item__step" type="button" data-cart-inc="${escapeHtml(line.key)}" aria-label="Увеличить">
               <svg class="icon cart-item__step-icon" aria-hidden="true"><use href="#icon-qty-plus"></use></svg>
             </button>
           </div>
@@ -186,6 +186,7 @@ function step(key, delta) {
 function onClick(event) {
   if (event.target.closest('[data-cart-open]')) {
     event.preventDefault();
+    if (!isOpen) clearBuyNow();
     open();
     return;
   }
@@ -254,6 +255,10 @@ export function initCart() {
   document.addEventListener(EVENTS.overlayClick, close);
   document.addEventListener(EVENTS.layerOpen, (event) => {
     if (event.detail !== LAYERS.cart) close();
+  });
+  document.addEventListener(EVENTS.cartOpen, () => {
+    if (!isOpen) clearBuyNow();
+    open();
   });
   document.addEventListener(EVENTS.checkoutStart, () => {
     open();

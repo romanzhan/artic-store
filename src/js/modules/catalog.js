@@ -1,7 +1,7 @@
 import mockApi from '../api/mockApi.js';
 import { renderProductCard } from '../components/productCard.js';
 import { renderCheck } from '../components/check.js';
-import { routePath } from '../utils/base.js';
+import { routePath, go as navigate } from '../utils/base.js';
 import { renderBreadcrumbs } from '../utils/breadcrumbs.js';
 
 const SORT_LABELS = {
@@ -67,7 +67,7 @@ function smartBack(href) {
     sameSite = false;
   }
   if (sameSite && window.history.length > 1) window.history.back();
-  else window.location.href = href;
+  else navigate(href);
 }
 
 function renderNav(tree) {

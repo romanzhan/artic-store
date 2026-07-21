@@ -1,5 +1,6 @@
 import { createCenteredModal } from './centeredModal.js';
 import { openAuth } from './auth.js';
+import authStore from './authStore.js';
 import { EVENTS, LAYERS } from '../constants.js';
 
 const content = () => `
@@ -35,3 +36,11 @@ const modal = createCenteredModal({
 
 export const initAuthGate = modal.init;
 export const openAuthGate = modal.open;
+
+export function startCheckout() {
+  if (authStore.isAuthed()) {
+    document.dispatchEvent(new CustomEvent(EVENTS.checkoutStart));
+    return;
+  }
+  modal.open();
+}

@@ -9,13 +9,13 @@ import GLightbox from 'glightbox';
 import 'glightbox/dist/css/glightbox.min.css';
 
 import mockApi from '../api/mockApi.js';
-import { routePath } from '../utils/base.js';
+import { routePath, BASE } from '../utils/base.js';
 import { imageUrl, formatPrice, discountPercent, renderBadge, renderBrand } from '../utils/productAssets.js';
 import { renderBreadcrumbs } from '../utils/breadcrumbs.js';
-import { setSlot } from '../utils/dom.js';
+import { setSlot, escapeHtml } from '../utils/dom.js';
 import { renderActions } from '../components/ctaActions.js';
-import { EVENTS } from '../constants.js';
 import cartStore from './cartStore.js';
+import { startCheckout } from './authGate.js';
 import { setBuyNow } from './orderSummary.js';
 import { initSizeChart, openSizeChart } from './sizeChart.js';
 import favoritesStore from './favoritesStore.js';
@@ -49,7 +49,7 @@ function renderGallery() {
     .map(
       (img) => `
       <div class="swiper-slide">
-        <img class="product-gallery__img" src="${imageUrl(img)}" alt="${data.title}" data-gallery-open />
+        <img class="product-gallery__img" src="${imageUrl(img)}" alt="${escapeHtml(data.title)}" data-gallery-open />
       </div>`,
     )
     .join('');
@@ -91,6 +91,15 @@ function renderGallery() {
 }
 
 function initGallery() {
+  if (mainSwiper) {
+    mainSwiper.destroy(true, true);
+    mainSwiper = null;
+  }
+  if (thumbsSwiper) {
+    thumbsSwiper.destroy(true, true);
+    thumbsSwiper = null;
+  }
+
   const mainBox = root.querySelector('.product-gallery__main');
   const rail = root.querySelector('.product-gallery__rail');
   const applyRailHeight = () => {
@@ -175,7 +184,7 @@ function renderInfo() {
         <svg class="icon product__heart product__heart--fill" aria-hidden="true"><use href="#icon-heart"></use></svg>
       </button>
     </div>
-    <h1 class="product__title">${data.title}</h1>
+    <h1 class="product__title">${escapeHtml(data.title)}</h1>
     <p class="product__article">Артикул: <span class="product__article-value">${data.article}</span></p>
 
     <div class="product__row">
@@ -272,8 +281,16 @@ function onClick(event) {
   }
   const variant = event.target.closest('[data-variant]');
   if (variant) {
-    activeVariant = Number(variant.dataset.variant);
-    const idx = data.gallery.indexOf(data.variants[activeVariant].image);
+    const index = Number(variant.dataset.variant);
+    const target = data.variants[index];
+    if (target.id !== data.id) {
+      const keepVariants = data.variants;
+      window.history.pushState({}, '', `${BASE}product/${target.id}`);
+      loadProduct(target.id, keepVariants);
+      return;
+    }
+    activeVariant = index;
+    const idx = data.gallery.indexOf(target.image);
     if (idx >= 0 && mainSwiper) mainSwiper.slideToLoop(idx);
     slot('info', renderInfo());
     return;
@@ -286,7 +303,7 @@ function onClick(event) {
   }
   if (event.target.closest('[data-buy-now]')) {
     setBuyNow(buildLine().line);
-    document.dispatchEvent(new CustomEvent(EVENTS.checkoutStart));
+    startCheckout();
     return;
   }
   if (event.target.closest('[data-size-chart]')) return openSizeChart(activeSize);
@@ -303,30 +320,40 @@ function onClick(event) {
   }
 }
 
-export async function initProduct() {
-  root = document.querySelector('[data-product]');
-  if (!root) return;
-
-  initSizeChart();
-  const id = routePath().split('/').filter(Boolean)[1];
+async function loadProduct(id, keepVariants = null) {
   data = await mockApi.getProduct(id);
   if (!data) {
     root.innerHTML = '<p class="product__empty">Товар не найден</p>';
     return;
   }
 
+  if (keepVariants) data.variants = keepVariants;
   root.dataset.productId = data.id;
   activeSize = data.sizes[0] ?? null;
-  activeVariant = 0;
-  activeImage = Math.max(0, data.gallery.indexOf(data.variants[0].image));
+  const selfIndex = data.variants.findIndex((v) => v.id === data.id);
+  activeVariant = selfIndex >= 0 ? selfIndex : 0;
+  activeImage = Math.max(0, data.gallery.indexOf(data.variants[activeVariant].image));
   document.title = `${data.title} — Artic Store`;
   render();
   initGallery();
 
-  if (data.related?.length) {
-    const relatedRoot = document.querySelector('[data-related]');
-    if (relatedRoot) mountProductsSlider(relatedRoot, 'С этим товаром выбирают', data.related);
+  const relatedRoot = document.querySelector('[data-related]');
+  if (relatedRoot) {
+    if (data.related?.length) mountProductsSlider(relatedRoot, 'С этим товаром выбирают', data.related);
+    else relatedRoot.innerHTML = '';
   }
+}
+
+export async function initProduct() {
+  root = document.querySelector('[data-product]');
+  if (!root) return;
+
+  initSizeChart();
+  await loadProduct(routePath().split('/').filter(Boolean)[1]);
 
   root.addEventListener('click', onClick);
+  window.addEventListener('popstate', () => {
+    const id = routePath().split('/').filter(Boolean)[1];
+    if (id) loadProduct(id);
+  });
 }

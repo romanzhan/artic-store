@@ -1,4 +1,5 @@
 import { createAssetResolver } from './assets.js';
+import { escapeHtml } from './dom.js';
 
 export const imageUrl = createAssetResolver(
   import.meta.glob('../../assets/images/products/*.webp', { eager: true, query: '?url', import: 'default' }),
@@ -41,6 +42,6 @@ export function renderBadge(product, base) {
 export function renderBrand(product, base) {
   const url = logoUrl(brandSlug(product.brand));
   return url
-    ? `<img class="${base}__brand-logo" src="${url}" alt="${product.brand}" />`
-    : `<span class="${base}__brand">${product.brand}</span>`;
+    ? `<img class="${base}__brand-logo" src="${url}" alt="${escapeHtml(product.brand)}" />`
+    : `<span class="${base}__brand">${escapeHtml(product.brand)}</span>`;
 }

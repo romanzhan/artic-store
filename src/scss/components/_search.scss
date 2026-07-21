@@ -298,7 +298,7 @@
       gap: var(--space-16);
 
       > * {
-        flex: 0 0 calc((100% - var(--space-16) * 1.2) / 2.2);
+        flex: 0 0 calc((100% - var(--space-16) * 0.5) / 1.5);
       }
     }
   }

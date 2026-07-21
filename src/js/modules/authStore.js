@@ -1,4 +1,4 @@
-import authApi from '../api/authApi.js';
+import authApi, { SESSION_KEY } from '../api/authApi.js';
 
 let user = null;
 const listeners = new Set();
@@ -6,6 +6,12 @@ const listeners = new Set();
 function notify() {
   for (const listener of listeners) listener();
 }
+
+window.addEventListener('storage', async (event) => {
+  if (event.key !== null && event.key !== SESSION_KEY) return;
+  user = await authApi.user();
+  notify();
+});
 
 export const authStore = {
   user() {

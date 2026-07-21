@@ -77,7 +77,6 @@
     }
 
     &--account.is-active {
-      color: var(--color-accent);
       opacity: 1;
     }
   }
@@ -98,7 +97,7 @@
     font-weight: var(--fw-medium);
     line-height: 1;
     color: var(--color-white);
-    background-color: var(--color-accent);
+    background-color: var(--color-graphite);
     border-radius: 0;
 
     &:empty {

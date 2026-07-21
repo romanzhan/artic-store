@@ -44,11 +44,11 @@ function addressContent() {
 const branchCard = (b, i) => `
   <button class="branch-card${i === activeBranch ? ' is-active' : ''}" type="button" data-branch="${i}">
     <span class="branch-card__info">
-      <span class="branch-card__name">${b.name}</span>
-      <span class="branch-card__addr">${b.address}<br />${b.hours}</span>
-      <span class="branch-card__pickup">Можно забрать <b>с ${b.pickup}</b></span>
+      <span class="branch-card__name">${escapeHtml(b.name)}</span>
+      <span class="branch-card__addr">${escapeHtml(b.address)}<br />${escapeHtml(b.hours)}</span>
+      <span class="branch-card__pickup">Можно забрать <b>с ${escapeHtml(b.pickup)}</b></span>
     </span>
-    <span class="branch-card__media"><img src="${imageUrl(b.image)}" alt="${b.name}" loading="lazy" /></span>
+    <span class="branch-card__media"><img src="${imageUrl(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy" /></span>
   </button>`;
 
 function branchesContent() {
