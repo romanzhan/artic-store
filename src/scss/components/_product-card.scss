@@ -45,9 +45,9 @@
   &__badge {
     flex-shrink: 0;
     margin-inline-start: auto;
-    font-family: var(--font-primary);
-    font-size: var(--fs-12);
-    font-weight: var(--fw-medium);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-18);
+    font-weight: var(--fw-bold);
     text-transform: uppercase;
     color: var(--color-text);
   }
@@ -130,12 +130,12 @@
     gap: var(--space-8);
     font-family: var(--font-secondary);
     font-size: var(--fs-20);
+    font-weight: var(--fw-bold);
     color: var(--color-black);
   }
 
   &__price-old {
-    font-size: var(--fs-16);
-    color: var(--color-text-muted);
+    color: color-mix(in srgb, var(--color-graphite) 85%, transparent);
     text-decoration: line-through;
   }
 

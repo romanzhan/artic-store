@@ -416,7 +416,7 @@ const SLIDES = [
 ];
 
 const PROMO = {
-  title: 'Порадуй себя',
+  title: 'Категории товаров',
   subtitle: 'Одежда, обувь и аксессуары, которые будут радовать тебя долго',
   button: { text: 'Подобрать', href: catalogPath() },
   tiles: [

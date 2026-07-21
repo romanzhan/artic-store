@@ -99,7 +99,7 @@
     line-height: 1;
     color: var(--color-white);
     background-color: var(--color-accent);
-    border-radius: 50%;
+    border-radius: 0;
 
     &:empty {
       display: none;

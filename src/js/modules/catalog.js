@@ -234,12 +234,15 @@ function render() {
 }
 
 function placeSort() {
-  const sort = root.querySelector('.filter--sort');
   const head = root.querySelector('[data-catalog-head]');
   const bar = root.querySelector('[data-catalog-filters]');
-  if (!sort || !head || !bar) return;
+  if (!head || !bar) return;
+  const sorts = [...root.querySelectorAll('.filter--sort')];
+  if (!sorts.length) return;
+  const fresh = bar.querySelector('.filter--sort') || sorts[0];
+  sorts.forEach((sort) => sort !== fresh && sort.remove());
   const target = window.matchMedia('(max-width: 768px)').matches ? head : bar;
-  if (sort.parentElement !== target) target.appendChild(sort);
+  if (fresh.parentElement !== target) target.appendChild(fresh);
 }
 
 function closePanels(except) {
