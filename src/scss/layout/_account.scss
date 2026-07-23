@@ -72,7 +72,7 @@
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-24);
+    gap: var(--space-8);
   }
 
   &__empty {
@@ -139,7 +139,7 @@
   @include respond-to('mobile') {
     &__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-16);
+      gap: var(--space-4);
     }
   }
 }
@@ -339,7 +339,7 @@
   }
 
   &__gender-btn {
-    padding: var(--space-12) var(--space-24);
+    padding: var(--space-8) var(--space-24);
     font-family: var(--font-secondary);
     font-size: var(--fs-18);
     text-transform: uppercase;
@@ -446,7 +446,7 @@
   &__submit {
     width: 100%;
     justify-content: center;
-    padding-block: var(--space-16);
+    padding-block: var(--space-12);
   }
 
   @include respond-to('mobile') {
@@ -502,6 +502,7 @@
     display: flex;
     align-items: center;
     gap: var(--space-8);
+    font-family: var(--font-secondary);
     font-size: var(--fs-16);
     color: var(--color-text);
   }
@@ -511,8 +512,14 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-16);
-    font-size: var(--fs-16);
+    font-size: var(--fs-10);
     color: var(--color-text-secondary);
+
+    span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
 
     b {
       color: var(--color-text);
@@ -567,8 +574,9 @@
 
 .order-status {
   display: inline-block;
-  padding: var(--space-8) var(--space-16);
-  font-size: var(--fs-14);
+  padding: var(--space-4) var(--space-16);
+  font-family: var(--font-secondary);
+  font-size: var(--fs-16);
   font-weight: var(--fw-bold);
   text-align: center;
   text-transform: uppercase;
@@ -594,7 +602,7 @@
 .order-card .order-status {
   display: block;
   width: 100%;
-  padding-block: var(--space-12);
+  padding-block: var(--space-8);
 }
 
 .order-detail {
@@ -635,13 +643,14 @@
     align-items: center;
     gap: var(--space-8);
     margin-block-end: var(--space-12);
+    font-family: var(--font-secondary);
     font-size: var(--fs-16);
     color: var(--color-text);
   }
 
   &__line {
     margin-block-end: var(--space-12);
-    font-size: var(--fs-16);
+    font-size: var(--fs-10);
     color: var(--color-text-secondary);
 
     b {
@@ -668,12 +677,12 @@
     display: flex;
     justify-content: space-between;
     gap: var(--space-16);
-    font-size: var(--fs-16);
+    font-size: var(--fs-10);
     color: var(--color-text-secondary);
 
     span:last-child {
       font-family: var(--font-secondary);
-      font-size: var(--fs-18);
+      font-size: var(--fs-16);
       color: var(--color-black);
     }
 
@@ -706,7 +715,7 @@
     width: 100%;
     justify-content: center;
     margin-block-start: var(--space-32);
-    padding-block: var(--space-16);
+    padding-block: var(--space-12);
   }
 
   &__items {

@@ -1,7 +1,7 @@
 @use '../abstracts' as *;
 
 .tile {
-  --tile-ratio: 1 / 1;
+  --tile-ratio: 4 / 5;
   position: relative;
   display: block;
   overflow: hidden;

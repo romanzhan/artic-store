@@ -10,7 +10,7 @@ import 'glightbox/dist/css/glightbox.min.css';
 
 import mockApi from '../api/mockApi.js';
 import { routePath, BASE } from '../utils/base.js';
-import { imageUrl, formatPrice, discountPercent, renderBadge, renderBrand } from '../utils/productAssets.js';
+import { imageUrl, formatPrice, discountPercent, renderBrand } from '../utils/productAssets.js';
 import { renderBreadcrumbs } from '../utils/breadcrumbs.js';
 import { setSlot, escapeHtml } from '../utils/dom.js';
 import { renderActions } from '../components/ctaActions.js';
@@ -78,7 +78,6 @@ function renderGallery() {
         <div class="swiper product-gallery__viewport" data-main>
           <div class="swiper-wrapper">${slides}</div>
         </div>
-        ${renderBadge(data, 'product')}
         <button class="slider-nav slider-nav--prev product-gallery__nav product-gallery__nav--prev" type="button" data-gallery-prev aria-label="Предыдущее фото">
           <svg class="icon slider-nav__icon" aria-hidden="true"><use href="#icon-arrow-slider"></use></svg>
         </button>
@@ -179,6 +178,7 @@ function renderInfo() {
   return `
     <div class="product__head">
       ${renderBrand(data, 'product')}
+      ${data.oldPrice ? `<span class="product__discount">−${discountPercent(data)}%</span>` : ''}
       <button class="product__fav${favActive}" type="button" data-fav aria-label="В избранное">
         <svg class="icon product__heart product__heart--outline" aria-hidden="true"><use href="#icon-favorite"></use></svg>
         <svg class="icon product__heart product__heart--fill" aria-hidden="true"><use href="#icon-heart"></use></svg>

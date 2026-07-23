@@ -330,10 +330,20 @@ $compact-max: 1060px;
 
 .product__head {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-16);
+  align-items: center;
+  gap: var(--space-12);
   margin-block-end: var(--space-8);
+}
+
+.product__head > :first-child {
+  margin-inline-end: auto;
+}
+
+.product__discount {
+  font-family: var(--font-secondary);
+  font-size: var(--fs-18);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
 }
 
 .product__brand {
@@ -412,7 +422,7 @@ $compact-max: 1060px;
 .product__variants {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-12);
+  gap: var(--space-4);
 }
 
 .product__variant {
@@ -498,13 +508,17 @@ $compact-max: 1060px;
 .product__promo {
   max-width: var(--product-col-w);
   margin-block-end: var(--space-20);
-  padding: var(--space-12) var(--space-16);
-  font-size: var(--fs-14);
+  padding: var(--space-8) var(--space-16);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-regular);
+  white-space: nowrap;
+  text-align: center;
   color: var(--color-text-secondary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
 
   strong {
+    font-weight: var(--fw-regular);
     color: var(--color-text);
   }
 }
@@ -512,10 +526,11 @@ $compact-max: 1060px;
 .product__price {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   gap: var(--space-12);
   margin-block-end: var(--space-24);
   font-family: var(--font-secondary);
-  font-size: var(--fs-28);
+  font-size: var(--fs-22);
   font-weight: var(--fw-bold);
   color: var(--color-black);
 }
@@ -581,7 +596,7 @@ $compact-max: 1060px;
 .product__text {
   max-width: var(--product-text-measure);
   margin-block-end: var(--space-32);
-  font-size: var(--fs-16);
+  font-size: var(--fs-10);
   line-height: 1.5;
   color: var(--color-text-secondary);
 }

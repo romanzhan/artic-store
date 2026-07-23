@@ -38,7 +38,7 @@
 .promo__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
+  gap: var(--space-4);
 }
 
 @include respond-to('mobile') {

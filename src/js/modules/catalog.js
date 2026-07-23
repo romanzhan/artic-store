@@ -12,6 +12,9 @@ const SORT_LABELS = {
 
 let root = null;
 let data = null;
+let loadedPage = 1;
+let loadingMore = false;
+let sentinelObserver = null;
 
 function parseLocation() {
   const out = {};
@@ -186,19 +189,39 @@ function renderFilters(filters) {
     ${sortControl(a.sort)}`;
 }
 
-function renderPagination(page, totalPages) {
-  if (totalPages <= 1) return '';
-  const link = (p, label, opts = {}) => {
-    if (opts.disabled) return `<span class="pagination__item pagination__item--disabled">${label}</span>`;
-    if (opts.current) return `<span class="pagination__item pagination__item--current" aria-current="page">${label}</span>`;
-    return `<a class="pagination__item" href="${buildUrl({ page: p }, { resetPage: false })}">${label}</a>`;
-  };
-  const nums = [];
-  for (let p = 1; p <= totalPages; p += 1) nums.push(link(p, p, { current: p === page }));
+function renderLoadMore() {
+  if (loadedPage >= data.totalPages) return '';
   return `
-    ${link(page - 1, '‹', { disabled: page === 1 })}
-    ${nums.join('')}
-    ${link(page + 1, '›', { disabled: page === totalPages })}`;
+    <button class="btn btn--primary pagination__more" type="button" data-load-more>Загрузить ещё</button>
+    <div class="pagination__sentinel" data-load-sentinel aria-hidden="true"></div>`;
+}
+
+function updateLoadMore() {
+  const pag = root.querySelector('[data-pagination]');
+  if (pag) pag.innerHTML = renderLoadMore();
+  observeSentinel();
+}
+
+async function loadMore() {
+  if (loadingMore || loadedPage >= data.totalPages) return;
+  loadingMore = true;
+  const next = loadedPage + 1;
+  const res = await mockApi.getCatalog({ ...parseLocation(), page: next });
+  const grid = root.querySelector('[data-product-grid]');
+  if (grid && res.products.length) grid.insertAdjacentHTML('beforeend', res.products.map(renderProductCard).join(''));
+  loadedPage = next;
+  loadingMore = false;
+  updateLoadMore();
+}
+
+function observeSentinel() {
+  sentinelObserver?.disconnect();
+  const sentinel = root.querySelector('[data-load-sentinel]');
+  if (!sentinel) return;
+  sentinelObserver = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) loadMore();
+  }, { rootMargin: '400px 0px' });
+  sentinelObserver.observe(sentinel);
 }
 
 function render() {
@@ -220,6 +243,7 @@ function render() {
   const bar = root.querySelector('[data-catalog-filters]');
   if (bar) bar.innerHTML = renderFilters(data.filters);
 
+  loadedPage = data.page;
   const grid = root.querySelector('[data-product-grid]');
   if (grid) {
     grid.innerHTML = data.products.length
@@ -227,9 +251,7 @@ function render() {
       : '<p class="catalog__empty">В этой категории пока нет товаров</p>';
   }
 
-  const pag = root.querySelector('[data-pagination]');
-  if (pag) pag.innerHTML = renderPagination(data.page, data.totalPages);
-
+  updateLoadMore();
   placeSort();
 }
 
@@ -348,11 +370,8 @@ function onClick(event) {
     return;
   }
 
-  const pageLink = event.target.closest('a.pagination__item');
-  if (pageLink) {
-    event.preventDefault();
-    go(pageLink.getAttribute('href'));
-    root.querySelector('[data-product-grid]')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (event.target.closest('[data-load-more]')) {
+    loadMore();
     return;
   }
 
