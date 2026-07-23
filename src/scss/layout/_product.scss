@@ -596,9 +596,13 @@ $compact-max: 1060px;
 .product__text {
   max-width: var(--product-text-measure);
   margin-block-end: var(--space-32);
-  font-size: var(--fs-10);
+  font-size: var(--fs-14);
   line-height: 1.5;
   color: var(--color-text-secondary);
+
+  @include respond-to('mobile') {
+    font-size: var(--fs-10);
+  }
 }
 
 .product__subtitle {

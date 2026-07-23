@@ -117,4 +117,12 @@
       max-width: var(--info-media-w);
     }
   }
+
+  @include respond-to('mobile') {
+    &__lead,
+    &__text,
+    &__item {
+      font-size: var(--fs-12);
+    }
+  }
 }

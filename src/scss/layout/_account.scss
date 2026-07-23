@@ -850,4 +850,26 @@
   }
 }
 
+@include respond-to('mobile') {
+  .order-card__sum-label {
+    font-size: var(--fs-10);
+  }
+
+  .order-card__sum-value {
+    font-size: var(--fs-18);
+  }
+
+  .order-detail__sum-row--total {
+    font-size: var(--fs-16);
+
+    span:last-child {
+      font-size: var(--fs-20);
+    }
+  }
+
+  .account-home .account-home__logout {
+    padding-block: var(--space-8);
+  }
+}
+
 

@@ -197,7 +197,7 @@ export function initSearch() {
     if (event.key === 'Escape') close();
   });
   window.addEventListener('scroll', () => {
-    if (isOpen) close();
+    if (isOpen && !window.matchMedia('(max-width: 1024px)').matches) close();
   }, { passive: true });
   document.addEventListener(EVENTS.layerOpen, (event) => {
     if (event.detail !== LAYERS.search) close();

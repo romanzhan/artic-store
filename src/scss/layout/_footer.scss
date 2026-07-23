@@ -112,7 +112,9 @@
 }
 
 .footer__link {
-  font-size: var(--fs-10);
+  font-family: var(--font-secondary);
+  font-size: var(--fs-16);
+  text-transform: uppercase;
   color: var(--color-text);
   transition: color var(--transition-base);
 
@@ -150,5 +152,9 @@
   .footer__contacts {
     justify-self: start;
     text-align: start;
+  }
+
+  .footer__link {
+    font-size: var(--fs-14);
   }
 }

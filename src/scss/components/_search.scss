@@ -301,5 +301,13 @@
         flex: 0 0 calc((100% - var(--space-16) * 0.5) / 1.5);
       }
     }
+
+    &__field {
+      padding-block: var(--space-8);
+
+      &:focus-within {
+        box-shadow: none;
+      }
+    }
   }
 }

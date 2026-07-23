@@ -295,6 +295,27 @@
       flex-direction: column;
       align-items: flex-start;
     }
+
+    &__step {
+      margin-block-end: var(--space-16);
+    }
+
+    &__num {
+      font-size: var(--fs-28);
+    }
+
+    &__step-title {
+      font-size: var(--fs-18);
+    }
+
+    &__input {
+      padding-block: var(--space-8);
+      font-size: var(--fs-14);
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
   }
 }
 
@@ -357,6 +378,31 @@
 
     .checkout-card__title {
       font-size: var(--fs-18);
+    }
+  }
+
+  @include respond-to('mobile') {
+    --card-icon: 32px;
+
+    gap: var(--space-12);
+    padding: var(--space-8) var(--space-16);
+
+    &__title {
+      font-size: var(--fs-18);
+    }
+
+    &__desc {
+      font-size: var(--fs-12);
+    }
+
+    &--payment {
+      --card-icon: 20px;
+
+      padding-block: var(--space-8);
+
+      .checkout-card__title {
+        font-size: var(--fs-16);
+      }
     }
   }
 }

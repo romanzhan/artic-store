@@ -95,4 +95,22 @@
     justify-content: center;
     padding-block: var(--space-12);
   }
+
+  @include respond-to('mobile') {
+    &__row {
+      font-size: var(--fs-12);
+
+      span:last-child {
+        font-size: var(--fs-16);
+      }
+
+      &--total {
+        font-size: var(--fs-16);
+
+        span:last-child {
+          font-size: var(--fs-20);
+        }
+      }
+    }
+  }
 }
