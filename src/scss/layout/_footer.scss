@@ -98,8 +98,9 @@
 }
 
 .footer__email {
-  font-size: var(--fs-14);
-  letter-spacing: 0.02em;
+  font-family: var(--font-secondary);
+  font-size: var(--fs-16);
+  text-transform: uppercase;
   color: var(--color-text-secondary);
   transition: color var(--transition-base);
 
@@ -165,7 +166,8 @@
     text-align: start;
   }
 
-  .footer__link {
+  .footer__link,
+  .footer__email {
     font-size: var(--fs-14);
   }
 }
