@@ -753,7 +753,7 @@ var e=Object.create,t=Object.defineProperty,n=Object.getOwnPropertyDescriptor,r=
     <a class="order-card" href="/account/orders/${e.id}">
       <div class="order-card__top">
         <div class="order-card__head">
-          <h2 class="order-card__num">Заказ ${e.id}</h2>
+          <h2 class="order-card__num">Заказ: ${e.id}</h2>
           <p class="order-card__date">
             <svg class="icon order-card__icon" aria-hidden="true"><use href="#icon-date"></use></svg>
             ${I(e.date)}
@@ -845,7 +845,7 @@ var e=Object.create,t=Object.defineProperty,n=Object.getOwnPropertyDescriptor,r=
       </a>
       <div class="order-detail__body">
         <div class="order-detail__head">
-          <h1 class="order-detail__num">Заказ ${e.id}</h1>
+          <h1 class="order-detail__num">Заказ: ${e.id}</h1>
           ${bm(t)}
         </div>
         <p class="order-detail__date">
