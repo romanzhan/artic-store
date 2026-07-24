@@ -129,7 +129,7 @@ function renderOrderCard(order) {
     <a class="order-card" href="/account/orders/${order.id}">
       <div class="order-card__top">
         <div class="order-card__head">
-          <h2 class="order-card__num">Заказ ${order.id}</h2>
+          <h2 class="order-card__num">Заказ: ${order.id}</h2>
           <p class="order-card__date">
             <svg class="icon order-card__icon" aria-hidden="true"><use href="#icon-date"></use></svg>
             ${escapeHtml(order.date)}
@@ -258,7 +258,7 @@ function renderOrderDetail(order) {
       </a>
       <div class="order-detail__body">
         <div class="order-detail__head">
-          <h1 class="order-detail__num">Заказ ${order.id}</h1>
+          <h1 class="order-detail__num">Заказ: ${order.id}</h1>
           ${statusBadge(status)}
         </div>
         <p class="order-detail__date">

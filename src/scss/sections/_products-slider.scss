@@ -9,7 +9,7 @@
   color: var(--color-text);
 
   @include respond-to('mobile') {
-    font-size: var(--fs-16);
+    font-size: var(--fs-20);
   }
 }
 
