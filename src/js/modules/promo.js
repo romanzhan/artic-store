@@ -15,7 +15,6 @@ function renderTile(tile) {
 
 function render(root, data) {
   root.innerHTML = `
-    <h2 class="promo__mobile-title">Новинки</h2>
     <div class="promo__inner">
       <div class="promo__text">
         <h2 class="promo__title">${data.title}</h2>

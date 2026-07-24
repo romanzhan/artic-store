@@ -41,10 +41,6 @@
   gap: var(--space-4);
 }
 
-.promo__mobile-title {
-  display: none;
-}
-
 @include respond-to('mobile') {
   .promo__text {
     display: none;
@@ -53,16 +49,6 @@
   .promo__inner {
     grid-template-columns: 1fr;
     gap: var(--space-32);
-  }
-
-  .promo__mobile-title {
-    display: block;
-    width: fit-content;
-    margin-block-end: var(--space-16);
-    font-family: var(--font-secondary);
-    font-size: var(--fs-16);
-    text-transform: uppercase;
-    color: var(--color-text);
   }
 
   .promo__grid {

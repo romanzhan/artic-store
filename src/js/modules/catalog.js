@@ -191,9 +191,7 @@ function renderFilters(filters) {
 
 function renderLoadMore() {
   if (loadedPage >= data.totalPages) return '';
-  return `
-    <button class="btn btn--primary pagination__more" type="button" data-load-more>Загрузить ещё</button>
-    <div class="pagination__sentinel" data-load-sentinel aria-hidden="true"></div>`;
+  return '<div class="pagination__sentinel" data-load-sentinel aria-hidden="true"></div>';
 }
 
 function updateLoadMore() {
@@ -370,10 +368,6 @@ function onClick(event) {
     return;
   }
 
-  if (event.target.closest('[data-load-more]')) {
-    loadMore();
-    return;
-  }
 
   const toggle = event.target.closest('[data-filter-toggle]');
   if (toggle && root.contains(toggle)) {

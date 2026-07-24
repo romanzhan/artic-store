@@ -36,8 +36,9 @@
 
   &__promo-btn {
     flex-shrink: 0;
-    padding: var(--space-8) var(--space-16);
+    padding: var(--space-16);
     font-size: var(--fs-18);
+    border-color: var(--color-border);
 
     .btn__icon {
       width: var(--btn-icon-w-sm);
@@ -97,6 +98,11 @@
   }
 
   @include respond-to('mobile') {
+    &__promo-btn {
+      padding-block: var(--space-8);
+      font-size: var(--fs-16);
+    }
+
     &__row {
       font-size: var(--fs-12);
 

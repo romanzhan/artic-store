@@ -45,7 +45,8 @@ export function mountProductsSlider(root, title, products) {
 export async function initProductsSlider() {
   const roots = document.querySelectorAll('[data-products-slider]');
   for (const root of roots) {
-    const products = await mockApi.getProducts({ sale: root.dataset.source === 'sale', limit: 12 });
+    const source = root.dataset.source;
+    const products = await mockApi.getProducts({ sale: source === 'sale', new: source === 'new', limit: 12 });
     if (!products.length) continue;
     mountProductsSlider(root, root.dataset.title ?? '', products);
   }

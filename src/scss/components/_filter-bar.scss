@@ -383,12 +383,24 @@
 
 @include respond-to('mobile') {
   .filter-bar__filters {
+    flex: 1;
     gap: var(--space-8);
+  }
+
+  .filter-bar__filters > .filter {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .filter-bar__filters > .filter--price {
+    flex: 0 0 auto;
   }
 
   .filter-chip {
     --chip-marker: 16px;
 
+    width: 100%;
+    justify-content: center;
     gap: var(--space-4);
     padding-inline: var(--space-8);
     font-size: var(--fs-14);

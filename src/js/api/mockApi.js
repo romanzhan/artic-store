@@ -469,6 +469,7 @@ export const mockApi = {
     await delay();
     let list = PRODUCTS;
     if (options.sale) list = list.filter((p) => p.oldPrice);
+    if (options.new) list = list.filter((p) => p.label === 'new');
     if (options.gender) list = list.filter((p) => p.gender === options.gender);
     if (options.group) list = list.filter((p) => p.group === options.group);
     if (options.category) list = list.filter((p) => p.category === options.category);
